@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:flutter_app/src/screens/login_screen.dart';
 import 'package:flutter_app/src/screens/welcome_screen.dart';
 
 void main() => runApp(MyApp());
@@ -13,9 +14,13 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: _title,
       home: MyStatefulWidget(),
+      theme: ThemeData(
+          primarySwatch:Colors.red
+      ),
       initialRoute: WelcomeScreen.routeName,
       routes: <String, WidgetBuilder>{
         WelcomeScreen.routeName : (BuildContext context) => WelcomeScreen(),
+        LoginScreen.routeName: (BuildContext context) => LoginScreen(),
 
       },
     );
