@@ -84,7 +84,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.settings_applications),
-            title: Text('Settings'),
+            title: Text('Configuración'),
           ),
         ],
         currentIndex: _selectedIndex,

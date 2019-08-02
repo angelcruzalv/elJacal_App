@@ -22,14 +22,14 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
             Image.asset('images/el_jacal.png', height: 200, width: 200,),
             AppButton(
               color: Colors.redAccent,
-              name: "Iniciar sesión",
+              name: "Iniciar sesión 2",
               onPressed: (){
                 Navigator.pushNamed(context, '/login');
               },
             ),
             AppButton(
               color: Colors.deepOrangeAccent,
-              name: "Registrarse",
+              name: "Registrarse 2",
               onPressed: (){
                 Navigator.pushNamed(context, '/registration');
               },
