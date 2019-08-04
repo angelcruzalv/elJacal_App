@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "1094096516797",
+    "firebase_url": "https://el-jacal.firebaseio.com",
+    "project_id": "el-jacal",
+    "storage_bucket": "el-jacal.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1094096516797:android:2913683962bbe592",
+        "android_client_info": {
+          "package_name": "com.alberto.el_jacal"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1094096516797-tfs85r7pjnhhdki4fcoqpfksqj5eqbr5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBl-5B3InDpSThMhoCQhHxUQATfbtZ45Ow"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1094096516797-tfs85r7pjnhhdki4fcoqpfksqj5eqbr5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
