@@ -45,8 +45,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
 
                  var newUser = await Authentication().createUser(email: _email, password: _password);
                  if(newUser != null){
-                 Navigator.pushNamed(context, '/navbar');
-               
+                 Navigator.pushNamed(context, '/navbar');   
               
                }
                }
