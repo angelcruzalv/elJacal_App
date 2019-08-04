@@ -41,13 +41,14 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
            AppButton(
              color: Colors.redAccent,
              name: "Registrar",
-             onPressed: ()  {
+             onPressed: () async {
 
-                 /*var newUser = await Authentication().createUser(email: _email, password: _password);
+                 var newUser = await Authentication().createUser(email: _email, password: _password);
                  if(newUser != null){
                  Navigator.pushNamed(context, '/navbar');
-               */
+               
               
+               }
                }
              
            ),
