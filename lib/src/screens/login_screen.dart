@@ -12,6 +12,7 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   String _email;
   String _password;
+  
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
@@ -42,9 +43,11 @@ class _LoginScreenState extends State<LoginScreen> {
                 color: Colors.redAccent,
                 name: "Iniciar sesión",
                 onPressed: ()async{
-                //  var newUser = await Authentication().signIn(email: _email, password: _password);
-
+                  var newUser = await Authentication().signIn(email: _email, password: _password);
+                 if(newUser != null){
+                 Navigator.pushNamed(context, '/home');
                 }
+                                }
             ),
             FlatButton(
               child: Text("Olvidé mi contraseña", style: TextStyle(color: Colors.red, fontFamily: "Arial", fontSize: 15.0), textAlign:TextAlign.center,),
