@@ -45,7 +45,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 onPressed: ()async{
                   var newUser = await Authentication().signIn(email: _email, password: _password);
                  if(newUser != null){
-                 Navigator.pushNamed(context, '/home');
+                 Navigator.pushNamed(context, '/nav');
                 }
                                 }
             ),

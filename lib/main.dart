@@ -25,6 +25,7 @@ class MyApp extends StatelessWidget {
         LoginScreen.routeName: (BuildContext context) => LoginScreen(),
         RegistrationScreen.routeName: (BuildContext context) => RegistrationScreen(),
         HomePage.routeName: (BuildContext context) => HomePage(),
+        MyStatefulWidget.routeName: (BuildContext context) => MyStatefulWidget(),
         
 
       },
@@ -33,6 +34,7 @@ class MyApp extends StatelessWidget {
 }
 
 class MyStatefulWidget extends StatefulWidget {
+  static const String routeName= '/nav';
   MyStatefulWidget({Key key}) : super(key: key);
 
   @override
@@ -45,19 +47,23 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
       TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
   static const List<Widget> _widgetOptions = <Widget>[
     Text(
-      'Index 0: Home',
+      'Index 0: Inicio',
       style: optionStyle,
     ),
     Text(
-      'Index 1: Business',
+      'Index 1: Entrada',
       style: optionStyle,
     ),
     Text(
-      'Index 2: School',
+      'Index 2: Salida',
       style: optionStyle,
     ),
     Text(
-      'Index 3: Settings',
+      'Index 3: Balance',
+      style: optionStyle,
+    ),
+    Text(
+      'Index 4: Settings',
       style: optionStyle,
     ),
   ];
@@ -65,6 +71,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
+      
     });
   }
 
@@ -72,8 +79,8 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('My flutter app jajaja'),
-      ),
+        title: const Text('Home'),
+      ), 
       body: Center(
         child: _widgetOptions.elementAt(_selectedIndex),
       ),
@@ -82,23 +89,27 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
-            title: Text('Home'),
+            title: Text('Inicio'),
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.business),
-            title: Text('Business'),
+            icon: Icon(Icons.arrow_upward),
+            title: Text('Entrada'),
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.school),
-            title: Text('School'),
+            icon: Icon(Icons.arrow_downward),
+            title: Text('Salida'),
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.attach_money),
+            title: Text('Balance'),
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.settings_applications),
-            title: Text('Configuración'),
+            title: Text('Ajustes'),
           ),
         ],
         currentIndex: _selectedIndex,
-        selectedItemColor: Colors.amber[800],
+        selectedItemColor: Colors.red,
         onTap: _onItemTapped,
       ),
     );
