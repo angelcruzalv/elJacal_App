@@ -20,15 +20,13 @@ void setSpinnerStatus(bool status){
   setState(() {
    showSpinner = status; 
   });
-
 }
 
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
-      //appBar: AppBar(title: Text("Login")),
-      body: ModalProgressHUD(
-      inAsyncCall: showSpinner,  
+      body: ModalProgressHUD(  //ProgressBar
+      inAsyncCall: showSpinner,  //progressbar
       child: Container(
         padding: EdgeInsets.all(20.0),
         child: Column(

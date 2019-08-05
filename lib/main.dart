@@ -4,6 +4,7 @@ import 'package:flutter_app/src/screens/home_screen.dart';
 import 'package:flutter_app/src/screens/login_screen.dart';
 import 'package:flutter_app/src/screens/registration_screen.dart';
 import 'package:flutter_app/src/screens/welcome_screen.dart';
+import 'package:flutter_app/src/services/authentication.dart';
 
 void main() => runApp(MyApp());
 
@@ -80,6 +81,19 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Home'),
+         automaticallyImplyLeading: false,
+        actions: <Widget>[
+          ButtonBar(children: <Widget>[
+            FlatButton(
+              child: Text("Salir", style: TextStyle(color: Colors.white),),
+              onPressed: (){
+                Authentication().signOut();
+                Navigator.pushNamed(context, "");
+              },
+            )
+          ],),
+        ],
+        
       ), 
       body: Center(
         child: _widgetOptions.elementAt(_selectedIndex),
