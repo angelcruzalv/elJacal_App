@@ -1,10 +1,12 @@
 
 import 'package:flutter/material.dart';
+import 'package:flutter_app/src/screens/entrada_screen.dart';
 import 'package:flutter_app/src/screens/home_screen.dart';
 import 'package:flutter_app/src/screens/login_screen.dart';
 import 'package:flutter_app/src/screens/registration_screen.dart';
 import 'package:flutter_app/src/screens/welcome_screen.dart';
 import 'package:flutter_app/src/services/authentication.dart';
+import 'package:flutter_app/src/screens/salida_screen.dart';
 
 void main() => runApp(MyApp());
 
@@ -46,11 +48,11 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
   int _selectedIndex = 0;
   static const TextStyle optionStyle =
       TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
-  static const List<Widget> _widgetOptions = <Widget>[
-    Text(
+ final List<Widget> _widgetOptions = <Widget>[
+    /*Text(
       'Index 0: Inicio',
       style: optionStyle,
-    ),
+    ), 
     Text(
       'Index 1: Entrada',
       style: optionStyle,
@@ -67,6 +69,10 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
       'Index 4: Settings',
       style: optionStyle,
     ),
+    */
+    HomePage(),
+    EntradaScreen(),
+    SalidaScreen(),
   ];
 
   void _onItemTapped(int index) {
@@ -79,22 +85,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Home'),
-         automaticallyImplyLeading: false,
-        actions: <Widget>[
-          ButtonBar(children: <Widget>[
-            FlatButton(
-              child: Text("Salir", style: TextStyle(color: Colors.white),),
-              onPressed: (){
-                Authentication().signOut();
-                Navigator.pushNamed(context, "");
-              },
-            )
-          ],),
-        ],
-        
-      ), 
+      
       body: Center(
         child: _widgetOptions.elementAt(_selectedIndex),
       ),

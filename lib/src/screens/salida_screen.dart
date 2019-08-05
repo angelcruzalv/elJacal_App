@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/src/services/authentication.dart';
-class HomePage extends StatefulWidget {
-  static const String routeName= '/home';
+
+
+class SalidaScreen extends StatefulWidget {
   @override
-  _HomePageState createState() => new _HomePageState();
+  _SalidaScreenState createState() => new _SalidaScreenState();
  }
-class _HomePageState extends State<HomePage> {
+class _SalidaScreenState extends State<SalidaScreen> {
   @override
   Widget build(BuildContext context) {
    return new Scaffold(
      appBar: AppBar(
-        title: const Text('Inicio'),
+        title: const Text('Salidas'),
          automaticallyImplyLeading: false,
         actions: <Widget>[
           ButtonBar(children: <Widget>[
@@ -24,12 +25,16 @@ class _HomePageState extends State<HomePage> {
           ],),
         ],
         
-      ), 
-     //appBar: AppBar(title: Text('Inicio')),
-     body: Center(
-       child: Text("Hola desde homescreen"),
-     )
-  
+      ),
+      body: Center(child: Text('Hola desde salidas')),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          // Add your onPressed code here!
+        },
+        child: Icon(Icons.add),
+        backgroundColor: Colors.red,
+      ),
+    
    );
   }
 }
