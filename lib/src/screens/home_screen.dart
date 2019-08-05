@@ -28,8 +28,10 @@ class _HomePageState extends State<HomePage> {
      //appBar: AppBar(title: Text('Inicio')),
      body: Center(
        child: Text("Hola desde homescreen"),
-     )
-  
+       
+     ),
+    
    );
   }
 }
+

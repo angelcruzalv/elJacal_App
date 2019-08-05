@@ -1,19 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/src/services/authentication.dart';
 
-
-class EntradaScreen extends StatefulWidget {
+class BalanceScreen extends StatefulWidget {
   @override
-  _EntradaScreen createState() => new _EntradaScreen();
+  _BalanceScreenState createState() => new _BalanceScreenState();
  }
-class _EntradaScreen extends State<EntradaScreen> {
+class _BalanceScreenState extends State<BalanceScreen> {
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
-      body: Container(
-        child: Scaffold(
-          appBar: AppBar(
-        title: const Text('Entradas'),
+     appBar: AppBar(
+        title: const Text('Balance'),
          automaticallyImplyLeading: false,
         actions: <Widget>[
           ButtonBar(children: <Widget>[
@@ -26,17 +23,11 @@ class _EntradaScreen extends State<EntradaScreen> {
             )
           ],),
         ],
+        
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          // Add your onPressed code here!
-        },
-        child: Icon(Icons.add),
-        backgroundColor: Colors.green,
-      ),
-        ),
-      ),
-    );
-   
+      body: Center(child: Text('Hola desde Balance')),
+     
+    
+   );
   }
 }

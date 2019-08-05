@@ -1,11 +1,12 @@
 
 import 'package:flutter/material.dart';
+import 'package:flutter_app/src/screens/ajustes_screen.dart';
+import 'package:flutter_app/src/screens/balance.dart';
 import 'package:flutter_app/src/screens/entrada_screen.dart';
 import 'package:flutter_app/src/screens/home_screen.dart';
 import 'package:flutter_app/src/screens/login_screen.dart';
 import 'package:flutter_app/src/screens/registration_screen.dart';
 import 'package:flutter_app/src/screens/welcome_screen.dart';
-import 'package:flutter_app/src/services/authentication.dart';
 import 'package:flutter_app/src/screens/salida_screen.dart';
 
 void main() => runApp(MyApp());
@@ -29,12 +30,11 @@ class MyApp extends StatelessWidget {
         RegistrationScreen.routeName: (BuildContext context) => RegistrationScreen(),
         HomePage.routeName: (BuildContext context) => HomePage(),
         MyStatefulWidget.routeName: (BuildContext context) => MyStatefulWidget(),
-        
-
       },
     );
   }
 }
+//ButtonNavBar
 
 class MyStatefulWidget extends StatefulWidget {
   static const String routeName= '/nav';
@@ -73,6 +73,8 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
     HomePage(),
     EntradaScreen(),
     SalidaScreen(),
+    BalanceScreen(),
+    AjustesScreen()
   ];
 
   void _onItemTapped(int index) {
@@ -91,6 +93,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
       ),
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed, //for more than 3 items
+        backgroundColor: Colors.white,
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
