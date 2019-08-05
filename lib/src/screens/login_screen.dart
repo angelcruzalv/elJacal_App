@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/src/widgets/app_button.dart';
 import 'package:flutter_app/src/widgets/app_textfield.dart';
 import 'package:flutter_app/src/services/authentication.dart';
+import 'package:modal_progress_hud/modal_progress_hud.dart';
+
 
 class LoginScreen extends StatefulWidget {
 
@@ -12,12 +14,22 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   String _email;
   String _password;
-  
+  bool showSpinner = false;
+
+void setSpinnerStatus(bool status){
+  setState(() {
+   showSpinner = status; 
+  });
+
+}
+
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
       //appBar: AppBar(title: Text("Login")),
-      body: Container(
+      body: ModalProgressHUD(
+      inAsyncCall: showSpinner,  
+      child: Container(
         padding: EdgeInsets.all(20.0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
@@ -43,11 +55,15 @@ class _LoginScreenState extends State<LoginScreen> {
                 color: Colors.redAccent,
                 name: "Iniciar sesión",
                 onPressed: ()async{
+                  setSpinnerStatus(true);
                   var newUser = await Authentication().signIn(email: _email, password: _password);
                  if(newUser != null){
                  Navigator.pushNamed(context, '/nav');
+                 
                 }
-                                }
+                setSpinnerStatus(false);
+               }
+              
             ),
             FlatButton(
               child: Text("Olvidé mi contraseña", style: TextStyle(color: Colors.red, fontFamily: "Arial", fontSize: 15.0), textAlign:TextAlign.center,),
@@ -60,7 +76,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
         ),
 
-      ),
+      )),
 
     );
   }
