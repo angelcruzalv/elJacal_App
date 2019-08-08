@@ -9,6 +9,7 @@ class WelcomeScreen extends StatefulWidget {
 }
 
 class _WelcomeScreenState extends State<WelcomeScreen> {
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -19,16 +20,17 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
-            Image.asset('images/el_jacal.png', height: 200, width: 200,),
+            SizedBox(height: 20.0,),
+            Image.asset('images/logo_circ.png', height: 250, width: 250,),
             AppButton(
-              color: Colors.redAccent,
+              color: Color.fromRGBO(255, 59, 48, 1.0),
               name: "Iniciar sesión ",
               onPressed: (){
                 Navigator.pushNamed(context, '/login');
               },
             ),
             AppButton(
-              color: Colors.deepOrangeAccent,
+              color: Color.fromRGBO(255, 59, 48, 1.0),
               name: "Registrarse ",
               onPressed: (){
                 Navigator.pushNamed(context, '/registration');

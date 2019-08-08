@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
       title: _title,
       home: MyStatefulWidget(),
       theme: ThemeData(
-          primarySwatch:Colors.red
+          primaryColor: Color.fromRGBO(255, 49, 48, 1.0),
       ),
       initialRoute: WelcomeScreen.routeName,
       routes: <String, WidgetBuilder>{

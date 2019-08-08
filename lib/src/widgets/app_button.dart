@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 class AppButton extends StatelessWidget {
 
-  final MaterialAccentColor color;
+  final Color color;
   final VoidCallback onPressed;
   final String name;
 

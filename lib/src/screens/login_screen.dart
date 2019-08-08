@@ -33,7 +33,8 @@ void setSpinnerStatus(bool status){
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
-            Image.asset('images/el_jacal.png', height: 200, width: 200,),
+            SizedBox(height: 20.0,),
+            Image.asset('images/logo_circ.png', height: 250, width: 250,),
             SizedBox(height: 48.0,),
             AppTextField(
               inputText: "Ingresar email",
@@ -50,7 +51,7 @@ void setSpinnerStatus(bool status){
 
             // SizedBox(height: 8.0,),
             AppButton(
-                color: Colors.redAccent,
+                color: Color.fromRGBO(255, 59, 48, 1.0),
                 name: "Iniciar sesión",
                 onPressed: ()async{
                   setSpinnerStatus(true);
