@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/src/services/authentication.dart';
+import 'package:flutter_app/src/services/entrada_services.dart';
+import 'package:flutter_app/src/services/salida_services.dart';
 
 
 class SalidaScreen extends StatefulWidget {
@@ -13,7 +15,7 @@ class _SalidaScreenState extends State<SalidaScreen> {
      appBar: AppBar(
         title: const Text('Salidas'),
          automaticallyImplyLeading: false,
-        actions: <Widget>[
+         actions: <Widget>[
           ButtonBar(children: <Widget>[
             FlatButton(
               child: Text("Salir", style: TextStyle(color: Colors.white),),
@@ -24,13 +26,17 @@ class _SalidaScreenState extends State<SalidaScreen> {
             )
           ],),
         ],
-        
       ),
       body: Center(child: Text('Hola desde salidas')),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          // Add your onPressed code here!
-        },
+          EntradaService().save(
+            collectionName: "ingresos",
+            collectiosValues: {
+              'total': '200',
+              'venta': '300'}
+          );
+                },
         child: Icon(Icons.add),
         backgroundColor: Colors.red,
       ),

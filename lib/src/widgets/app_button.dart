@@ -26,7 +26,6 @@ class AppButton extends StatelessWidget {
               // borderSide: BorderSide(color: color),
               shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(30.0)),
               onPressed: onPressed,
-
             )
         ),
       ),
@@ -34,5 +33,6 @@ class AppButton extends StatelessWidget {
     );
   }
 }
+
 
   

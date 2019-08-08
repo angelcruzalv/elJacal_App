@@ -100,11 +100,11 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
             title: Text('Inicio'),
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.arrow_upward),
+            icon: Icon(Icons.arrow_downward),
             title: Text('Entrada'),
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.arrow_downward),
+            icon: Icon(Icons.arrow_upward),
             title: Text('Salida'),
           ),
           BottomNavigationBarItem(
