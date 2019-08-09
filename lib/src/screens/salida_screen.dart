@@ -27,7 +27,23 @@ class _SalidaScreenState extends State<SalidaScreen> {
           ],),
         ],
       ),
-      body: Center(child: Text('Hola desde salidas')),
+      body: ListView.builder(
+       itemBuilder: (context, position) {
+        return Card(
+          child: ListTile(
+                leading: Icon(Icons.monetization_on, size: 62.0, color: Color.fromRGBO(255, 59, 53, 1.0),), 
+                title: Text("Gasolina"),
+                subtitle: Text("Este es un ejemplo de un subtítulo de tres líneas, el problema es que no sé cómo indicarle el salto de línea"),
+                contentPadding: EdgeInsets.all(10.0),
+                isThreeLine: true, 
+                trailing: Icon(Icons.expand_more),
+                onTap: (){},
+          ),
+    );
+  },
+),
+           
+      
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           EntradaService().save(

@@ -36,13 +36,13 @@ void setSpinnerStatus(bool status){
                 SizedBox(height: 48.0,), 
                 AppTextField(
                   inputText: "Ingresar email",
-                  onChanged:(value){_email= value;
+                  onSaved:(value){_email= value;
                   print('Email: $_email');},
                 ),
                   SizedBox(height: 48.0,),
                 AppTextField( inputText: "Ingresar contraseña",
                   obscureText: true,
-                  onChanged:(value){_password = value;
+                  onSaved:(value){_password = value;
                   print('Contraseña: $_password');
                   }
                   ),

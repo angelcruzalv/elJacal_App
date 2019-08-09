@@ -38,7 +38,7 @@ void setSpinnerStatus(bool status){
             SizedBox(height: 48.0,),
             AppTextField(
               inputText: "Ingresar email",
-              onChanged:(value){_email= value;
+              onSaved:(value){_email= value;
               print('Email: $_email');},
             ),
 
@@ -47,7 +47,7 @@ void setSpinnerStatus(bool status){
 
               inputText: "Ingresar contraseña",
               obscureText: true,
-              onChanged:(value){_password= value;},),
+              onSaved:(value){_password= value;},),
 
             // SizedBox(height: 8.0,),
             AppButton(

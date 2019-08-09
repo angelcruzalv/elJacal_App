@@ -3,14 +3,14 @@ import 'package:flutter/material.dart';
 class AppTextField extends StatelessWidget {
 
   final String inputText;
-  final ValueChanged<String> onChanged;
+  final ValueChanged<String> onSaved;
   final bool obscureText ;
 
-  const AppTextField({this.inputText, this.onChanged, this.obscureText});
+  const AppTextField({this.inputText, this.onSaved, this.obscureText});
 
   @override
   Widget build(BuildContext context) {
-    return  TextField(
+    return  TextFormField(
       decoration: InputDecoration(
         contentPadding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
         hintText: inputText,
@@ -28,7 +28,7 @@ class AppTextField extends StatelessWidget {
 
 
       ),
-      onChanged: onChanged,
+      onSaved: onSaved,
       textAlign: TextAlign.center,
       obscureText: obscureText == null ? false: obscureText,
 

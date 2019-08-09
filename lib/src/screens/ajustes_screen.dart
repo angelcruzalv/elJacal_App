@@ -25,8 +25,21 @@ class _AjustesScreenState extends State<AjustesScreen> {
         ],
         
       ),
-      body: Center(child: Text('Hola desde Configuración')),
-    
+          body: ListView(
+            children: <Widget>[
+              Card(child: ListTile(leading: Icon(Icons.settings), title: Text("Ajuste 1"),),),
+              Card(child: ListTile(leading: Icon(Icons.settings), title: Text("Ajuste 2"),)),
+              Card(child: ListTile(leading: Icon(Icons.settings), title: Text("Ajuste 3"),)),
+              Card(child: ListTile(leading: Icon(Icons.settings), title: Text("Ajuste 4"),)),
+              Card(child: ListTile(
+                leading: FlutterLogo(size: 62.0,), 
+                title: Text("Ajuste 5"),
+                subtitle: Text("Este es un ejemplo de un subtítulo de tres líneas, el problema es que no sé cómo indicarle el salto de línea"),
+                contentPadding: EdgeInsets.all(10.0),
+                isThreeLine: true, 
+                trailing: Icon(Icons.more),
+                onTap: (){},))
+              ],),
     
    );
   }
