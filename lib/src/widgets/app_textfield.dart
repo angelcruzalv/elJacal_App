@@ -5,12 +5,16 @@ class AppTextField extends StatelessWidget {
   final String inputText;
   final ValueChanged<String> onSaved;
   final bool obscureText ;
+  final FormFieldValidator<String> validator;
+  final bool autoValidate;
 
-  const AppTextField({this.inputText, this.onSaved, this.obscureText});
+  const AppTextField({this.inputText, this.onSaved, this.obscureText, this.validator, this.autoValidate});
 
   @override
   Widget build(BuildContext context) {
     return  TextFormField(
+      autovalidate: autoValidate,
+      validator: validator,
       decoration: InputDecoration(
         contentPadding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
         hintText: inputText,
