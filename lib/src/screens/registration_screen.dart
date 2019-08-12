@@ -11,11 +11,11 @@ class RegistrationScreen extends StatefulWidget {
   _RegistrationScreenState createState() => new _RegistrationScreenState();
  }
 class _RegistrationScreenState extends State<RegistrationScreen> with ValidationMixins{
-  String _email;
-  String _password;
   bool showSpinner = false;
   final GlobalKey<FormState> _globalKey = GlobalKey<FormState>(); //validar
   bool _autoValidate = false;
+  TextEditingController _emailController = TextEditingController();
+  TextEditingController _passwordController = TextEditingController();
 
 void setSpinnerStatus(bool status){
   setState(() {
@@ -45,30 +45,30 @@ void setSpinnerStatus(bool status){
                 _cancelButton(),
               ],
             ),
-          ),)
-          )
+          ),
+        )
+      )
    );
 
   }
   Widget _emailField(){
     return AppTextField(
+                  controller: _emailController,
                   autoValidate: _autoValidate,
                   validator: validateEmail,
                   inputText: "Ingresar email",
-                  onSaved:(value){_email= value;
-                  print('Email: $_email');},
+                  onSaved:(value){},
                 );
 
   }
   Widget _passwordField(){
     return AppTextField( 
+                  controller: _passwordController,
                   autoValidate: _autoValidate,
                   validator: validatePassword,
                   inputText: "Ingresar contraseña",
                   obscureText: true,
-                  onSaved:(value){_password = value;
-                  print('Contraseña: $_password');
-                  }
+                  onSaved:(value){}
                   );
     
   }
@@ -79,7 +79,7 @@ void setSpinnerStatus(bool status){
                   onPressed: () async {
                     if (_globalKey.currentState.validate()) {
                       setSpinnerStatus(true);
-                      var newUser = await Authentication().createUser(email: _email, password: _password);
+                      var newUser = await Authentication().createUser(email: _emailController.text, password: _passwordController.text);
                       if(newUser != null){
                       Navigator.pushNamed(context, '/nav');                       
                     }

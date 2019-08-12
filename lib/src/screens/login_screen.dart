@@ -13,18 +13,32 @@ class LoginScreen extends StatefulWidget {
   _LoginScreenState createState() => new _LoginScreenState();
 }
 class _LoginScreenState extends State<LoginScreen> with ValidationMixins {
-  String _email;
-  String _password;
+ // String _email;
+ // String _password;
   bool showSpinner = false;
   final GlobalKey<FormState> _globalKey = GlobalKey<FormState>(); //validar
   bool _autoValidate = false;
-
+  TextEditingController _emailController = TextEditingController();
+  TextEditingController _passwordController = TextEditingController();
+  FocusNode _focusNode;
 
 void setSpinnerStatus(bool status){
   setState(() {
    showSpinner = status; 
   });
 }
+
+@override
+  void dispose() {
+    super.dispose();
+    _focusNode.dispose(); //libera el recurso _focusNode
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _focusNode = FocusNode(); //inicializa el recurso _focusNode
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -63,23 +77,23 @@ void setSpinnerStatus(bool status){
   }
   Widget _emailField(){
     return AppTextField(
+              focusNode: _focusNode,  //enfoca el textfield del correo
+              controller: _emailController,
               autoValidate: _autoValidate,
               validator: validateEmail,
               inputText: "Ingresar email",
-              onSaved:(value){_email= value;
-              print('Email: $_email');},
+              onSaved:(value){print(_emailController.text);},
             );
 
   }
   Widget _passwordField(){
     return AppTextField( 
+                  controller: _passwordController,
                   autoValidate: _autoValidate,
                   validator: validatePassword,
                   inputText: "Ingresar contraseña",
                   obscureText: true,
-                  onSaved:(value){_password = value;
-                  print('Contraseña: $_password');
-                  }
+                  onSaved:(value){print(_passwordController.text);}
                   );
     
   }
@@ -88,13 +102,15 @@ void setSpinnerStatus(bool status){
                 color: Color.fromRGBO(255, 59, 48, 1.0),
                 name: "Iniciar sesión",
                 onPressed: ()async{
-if (_globalKey.currentState.validate()) {
+      if (_globalKey.currentState.validate()) {
                 setSpinnerStatus(true);
-                var newUser = await Authentication().signIn(email: _email, password: _password);
+                var newUser = await Authentication().signIn(email: _emailController.text, password: _passwordController.text);
                 if(newUser != null){
                    Navigator.pushNamed(context, '/nav');
-                 
                 }
+                FocusScope.of(context).requestFocus(_focusNode); //al cerrar sesión, regresa al login enfocando el emailTextFormField
+                 _emailController.text = "";
+                _passwordController.text = "";
                 setSpinnerStatus(false);
               }else{
                 setState(() => _autoValidate = true);

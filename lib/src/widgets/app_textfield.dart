@@ -7,12 +7,16 @@ class AppTextField extends StatelessWidget {
   final bool obscureText ;
   final FormFieldValidator<String> validator;
   final bool autoValidate;
+  final TextEditingController controller;
+  final FocusNode focusNode; //enfoca el textfield
 
-  const AppTextField({this.inputText, this.onSaved, this.obscureText, this.validator, this.autoValidate});
+  const AppTextField({this.inputText, this.onSaved, this.obscureText, this.validator, this.autoValidate, this.controller, this.focusNode});
 
   @override
   Widget build(BuildContext context) {
     return  TextFormField(
+      focusNode: focusNode, //enfoca el textfield
+      controller: controller,
       autovalidate: autoValidate,
       validator: validator,
       decoration: InputDecoration(
