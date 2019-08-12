@@ -8,7 +8,7 @@ class Authentication {
       {String email = "", String password = ""}) async {
     AuthenticationRequest authRequest = AuthenticationRequest();
     try {
-      var user = await _auth.signInWithEmailAndPassword(
+      var user = await _auth.createUserWithEmailAndPassword(
           email: email, password: password);
       if (user != null) {
         authRequest.succes = true;
@@ -49,7 +49,7 @@ class Authentication {
       case 'ERROR_NETWORK_REQUEST_FAILED':
         authRequest.errorMessage = 'Error en la red';
         break;
-      case 'ERROR_MAIL_ALREADY_IN_USE':
+      case 'ERROR_EMAIL_ALREADY_IN_USE':
         authRequest.errorMessage = 'El usuario ya ha sido registrado antes';
         break;
       case 'ERROR_INVALID_EMAIL':
