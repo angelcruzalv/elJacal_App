@@ -46,9 +46,9 @@ class _SalidaScreenState extends State<SalidaScreen> {
       
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          EntradaService().save(
+          SalidaService().save(
             collectionName: "ingresos",
-            collectiosValues: {
+            collectionValues: {
               'total': '200',
               'venta': '300'}
           );
