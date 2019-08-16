@@ -56,14 +56,18 @@ class _SalidaScreenState extends State<SalidaScreen> {
                   final salidaFecha = salida.data["fecha"];
                   final salidaTotal = salida.data["total"];
                   final salidaValor = salida.data["valor"];
-                  salidaWidgets.add(Text('$salidaDpto , $salidaDesc , $salidaFecha , $salidaTotal , $salidaValor'));
+                  salidaWidgets.add(Text('Departamento: $salidaDpto , Descripción: $salidaDesc , Fecha: $salidaFecha , Total: $salidaTotal , Valor: $salidaValor'));
                   
                 }
-                return Flexible(
-                  child: ListView(
-                    children: salidaWidgets,
-                  ),
-                );
+                   
+                    return Card(
+                    child: ListTile(
+                    title: Text((salidaWidgets.length).toString()),
+                    subtitle: salidaWidgets[0],
+                    isThreeLine: true, 
+                    )
+                  );
+                
               }
             }
           ),
