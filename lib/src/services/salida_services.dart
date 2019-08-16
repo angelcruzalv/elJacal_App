@@ -6,7 +6,7 @@ class SalidaService{
     _firestore.collection(collectionName).add(collectionValues);
   }
 
-  void getData(String collectionName, Map<String, dynamic> collectionValues){
-    
+  Stream<QuerySnapshot> getSalidasStream(){
+    return _firestore.collection("salidas").snapshots();
   }
 }

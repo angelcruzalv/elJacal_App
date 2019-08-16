@@ -9,7 +9,22 @@ class SalidaScreen extends StatefulWidget {
   _SalidaScreenState createState() => new _SalidaScreenState();
  }
 class _SalidaScreenState extends State<SalidaScreen> {
+
   @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    _getSalidas();
+  }
+
+  void _getSalidas() async{
+    await for (var snapshot in SalidaService().getSalidasStream()) {
+      for (var salida in snapshot.documents) {
+        print(salida.data);
+      }
+      
+    }
+  }
   Widget build(BuildContext context) {
    return new Scaffold(
      appBar: AppBar(
@@ -27,36 +42,36 @@ class _SalidaScreenState extends State<SalidaScreen> {
           ],),
         ],
       ),
-      body: ListView.builder(
-       itemBuilder: (context, position) {
-        return Card(
-          child: ListTile(
-                leading: Icon(Icons.monetization_on, size: 62.0, color: Color.fromRGBO(255, 59, 53, 1.0),), 
-                title: Text("Gasolina"),
-                subtitle: Text("Este es un ejemplo de un subtítulo de tres líneas, el problema es que no sé cómo indicarle el salto de línea"),
-                contentPadding: EdgeInsets.all(10.0),
-                isThreeLine: true, 
-                trailing: Icon(Icons.expand_more),
-                onTap: (){},
+      body: Column(
+        children: <Widget>[
+          StreamBuilder(
+            stream: SalidaService().getSalidasStream(),
+            builder: (context, snapshot){
+              if (snapshot.hasData) {
+                var salidas = snapshot.data.documents;
+                List<Text> salidaWidgets = [];
+                for (var salida in salidas) {
+                  final salidaDpto = salida.data["departamento"];
+                  final salidaDesc = salida.data["descripcion"];
+                  final salidaFecha = salida.data["fecha"];
+                  final salidaTotal = salida.data["total"];
+                  final salidaValor = salida.data["valor"];
+                  salidaWidgets.add(Text('$salidaDpto , $salidaDesc , $salidaFecha , $salidaTotal , $salidaValor'));
+                  
+                }
+                return Flexible(
+                  child: ListView(
+                    children: salidaWidgets,
+                  ),
+                );
+              }
+            }
           ),
-    );
-  },
-),
+        ],
+      )
            
-      
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          SalidaService().save(
-            collectionName: "ingresos",
-            collectionValues: {
-              'total': '200',
-              'venta': '300'}
-          );
-                },
-        child: Icon(Icons.add),
-        backgroundColor: Colors.red,
-      ),
     
    );
   }
+  
 }
