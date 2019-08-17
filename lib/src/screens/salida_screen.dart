@@ -3,13 +3,12 @@ import 'package:flutter_app/src/services/authentication.dart';
 import 'package:flutter_app/src/services/entrada_services.dart';
 import 'package:flutter_app/src/services/salida_services.dart';
 
-
 class SalidaScreen extends StatefulWidget {
   @override
   _SalidaScreenState createState() => new _SalidaScreenState();
- }
-class _SalidaScreenState extends State<SalidaScreen> {
+}
 
+class _SalidaScreenState extends State<SalidaScreen> {
   @override
   void initState() {
     // TODO: implement initState
@@ -17,88 +16,117 @@ class _SalidaScreenState extends State<SalidaScreen> {
     _getSalidas();
   }
 
-  void _getSalidas() async{
+  void _getSalidas() async {
     await for (var snapshot in SalidaService().getSalidasStream()) {
       for (var salida in snapshot.documents) {
         print(salida.data);
       }
-      
     }
   }
+
   Widget build(BuildContext context) {
-   return new Scaffold(
-     appBar: AppBar(
-        title: const Text('Salidas'),
-         automaticallyImplyLeading: false,
-         actions: <Widget>[
-          ButtonBar(children: <Widget>[
-            FlatButton(
-              child: Text("Salir", style: TextStyle(color: Colors.white),),
-              onPressed: (){
-                Authentication().signOut();
-                Navigator.pushNamed(context, "");
-              },
-            )
-          ],),
-        ],
-      ),
-      body: Column(
-        children: <Widget>[
-          StreamBuilder(
-            stream: SalidaService().getSalidasStream(),
-            builder: (context, snapshot){
-              if (snapshot.hasData) {
-                var salidas = snapshot.data.documents;
-                //List<Text> salidaWidgets = [];
-                List<SalidaItem> salidaItems = [];
-                for (var salida in salidas) {
-                  final salidaDpto = salida.data["departamento"];
-                  final salidaDesc = salida.data["descripcion"];
-                  final salidaFecha = salida.data["fecha"];
-                  final salidaTotal = salida.data["total"];
-                  final salidaValor = salida.data["valor"];
-                  //salidaWidgets.add(Text('$salidaDpto , Descripción: $salidaDesc , Fecha: $salidaFecha , Total: $salidaTotal , Valor: $salidaValor'));
-                  salidaItems.add(SalidaItem(departamento: salidaDpto, descripcion: salidaDesc));
-                }
-                   
-                    return Flexible(
-                    child: Card(
-                      child: ListView(
-                        children: salidaItems,
+    return new MaterialApp(
+        theme: ThemeData(primaryColor: Colors.red),
+        home: new Scaffold(
+            appBar: AppBar(
+              title: const Text('Salidas'),
+              automaticallyImplyLeading: false,
+              actions: <Widget>[
+                ButtonBar(
+                  children: <Widget>[
+                    FlatButton(
+                      child: Text(
+                        "Salir",
+                        style: TextStyle(color: Colors.white),
                       ),
+                      onPressed: () {
+                        Authentication().signOut();
+                        Navigator.pushNamed(context, "");
+                      },
                     )
-                  );
-                
-              }
-            }
-          ),
-        ],
-      )
-           
-    
-   );
+                  ],
+                ),
+              ],
+            ),
+            body: Column(
+              children: <Widget>[
+                StreamBuilder(
+                    stream: SalidaService().getSalidasStream(),
+                    builder: (context, snapshot) {
+                      if (snapshot.hasData) {
+                        var salidas = snapshot.data.documents;
+                        //List<Text> salidaWidgets = [];
+                        List<SalidaItem> salidaItems = [];
+                        for (var salida in salidas) {
+                          final salidaDpto = salida.data["departamento"];
+                          final salidaDesc = salida.data["descripcion"];
+                          final salidaFecha = salida.data["fecha"].toString();
+                          final salidaTotal = salida.data["total"].toString();
+                          final salidaValor = salida.data["valor"].toString();
+                          //salidaWidgets.add(Text('$salidaDpto , Descripción: $salidaDesc , Fecha: $salidaFecha , Total: $salidaTotal , Valor: $salidaValor'));
+                          salidaItems.add(SalidaItem(
+                            departamento: salidaDpto,
+                            descripcion: salidaDesc,
+                            valor: salidaValor,
+                            total: salidaTotal,
+                            fecha: salidaFecha,
+                          ));
+                        }
+
+                        return Flexible(
+                            child: MaterialApp(  
+                                                       
+                                theme: ThemeData(primaryColor: Colors.red),
+                                home: Card(
+                                  child: ListView(
+                                    children: salidaItems,
+                                  ),
+                                )
+                              )
+                           );
+                      }
+                    }),
+              ],
+            )));
   }
-  
 }
+
 class SalidaItem extends StatelessWidget {
   final String departamento;
   final String descripcion;
- /* final String fecha;
+  final String fecha;
   final String total;
-  final String valor; */
+  final String valor;
 
-  SalidaItem({this.departamento, this.descripcion});
- @override
- Widget build(BuildContext context) {
-  return ListTile(
-      leading: CircleAvatar(child: Text("A"),),
-      title: Text(departamento),
-      subtitle: Text(descripcion),
+  SalidaItem(
+      {this.departamento,
+      this.descripcion,
+      this.total,
+      this.valor,
+      this.fecha});
+  @override
+  Widget build(BuildContext context) {
+    return ListTile(
+      leading: CircleAvatar(
+        backgroundColor: Colors.red,
+        child: Text(departamento[0]),
+      ),
+      title: Text(departamento, style: TextStyle(fontWeight: FontWeight.bold)),
+      subtitle: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Text(descripcion),
+          Text(
+            'Valor: $valor. Total: $total',
+            style: TextStyle(fontWeight: FontWeight.bold),
+          ),
+          Text('Fecha: 02/AGO/2019'),
+        ],
+      ),
       isThreeLine: true,
-      contentPadding: EdgeInsets.all(10.0),           
+      contentPadding: EdgeInsets.all(10.0),
       trailing: Icon(Icons.expand_more),
-      onTap: (){},
+      onTap: () {},
     );
- 
- }
+  }
 }

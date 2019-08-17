@@ -124,6 +124,7 @@ class _LoginScreenState extends State<LoginScreen> with ValidationMixins {
         name: "Iniciar sesión",
         onPressed: () async {
           if (_globalKey.currentState.validate()) {
+            
             setSpinnerStatus(true);
             var auth = await Authentication().signIn(
                 email: _emailController.text,
@@ -134,6 +135,8 @@ class _LoginScreenState extends State<LoginScreen> with ValidationMixins {
                   _focusNode); //al cerrar sesión, regresa al login enfocando el emailTextFormField
               _emailController.text = "";
               _passwordController.text = "";
+              
+
             }else{
               print(auth.errorMessage);
               setState(() {
@@ -141,6 +144,7 @@ class _LoginScreenState extends State<LoginScreen> with ValidationMixins {
               });
             }
             setSpinnerStatus(false);
+            
           } else {
             setState(() => _autoValidate = true);
           }
