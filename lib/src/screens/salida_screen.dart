@@ -49,22 +49,23 @@ class _SalidaScreenState extends State<SalidaScreen> {
             builder: (context, snapshot){
               if (snapshot.hasData) {
                 var salidas = snapshot.data.documents;
-                List<Text> salidaWidgets = [];
+                //List<Text> salidaWidgets = [];
+                List<SalidaItem> salidaItems = [];
                 for (var salida in salidas) {
                   final salidaDpto = salida.data["departamento"];
                   final salidaDesc = salida.data["descripcion"];
                   final salidaFecha = salida.data["fecha"];
                   final salidaTotal = salida.data["total"];
                   final salidaValor = salida.data["valor"];
-                  salidaWidgets.add(Text('Departamento: $salidaDpto , Descripción: $salidaDesc , Fecha: $salidaFecha , Total: $salidaTotal , Valor: $salidaValor'));
-                  
+                  //salidaWidgets.add(Text('$salidaDpto , Descripción: $salidaDesc , Fecha: $salidaFecha , Total: $salidaTotal , Valor: $salidaValor'));
+                  salidaItems.add(SalidaItem(departamento: salidaDpto, descripcion: salidaDesc));
                 }
                    
-                    return Card(
-                    child: ListTile(
-                    title: Text((salidaWidgets.length).toString()),
-                    subtitle: salidaWidgets[0],
-                    isThreeLine: true, 
+                    return Flexible(
+                    child: Card(
+                      child: ListView(
+                        children: salidaItems,
+                      ),
                     )
                   );
                 
@@ -78,4 +79,26 @@ class _SalidaScreenState extends State<SalidaScreen> {
    );
   }
   
+}
+class SalidaItem extends StatelessWidget {
+  final String departamento;
+  final String descripcion;
+ /* final String fecha;
+  final String total;
+  final String valor; */
+
+  SalidaItem({this.departamento, this.descripcion});
+ @override
+ Widget build(BuildContext context) {
+  return ListTile(
+      leading: CircleAvatar(child: Text("A"),),
+      title: Text(departamento),
+      subtitle: Text(descripcion),
+      isThreeLine: true,
+      contentPadding: EdgeInsets.all(10.0),           
+      trailing: Icon(Icons.expand_more),
+      onTap: (){},
+    );
+ 
+ }
 }
