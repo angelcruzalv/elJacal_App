@@ -5,4 +5,7 @@ class EntradaService{
   void save({String collectionName, Map<String, dynamic> collectiosValues}){
     _firestore.collection(collectionName).add(collectiosValues);
   }
+  Stream<QuerySnapshot> getEntradasStream(){
+    return _firestore.collection("entradas").snapshots();
+  }
 }

@@ -74,9 +74,8 @@ class _SalidaScreenState extends State<SalidaScreen> {
                         }
 
                         return Flexible(
-                            child: MaterialApp(  
-                                                       
-                                theme: ThemeData(primaryColor: Colors.red),
+                            child: MaterialApp(                                                         
+                                //theme: ThemeData(primaryColor: Colors.red),
                                 home: Card(
                                   child: ListView(
                                     children: salidaItems,
@@ -85,9 +84,19 @@ class _SalidaScreenState extends State<SalidaScreen> {
                               )
                            );
                       }
-                    }),
+                    }
+                  ),
               ],
-            )));
+            ),
+            floatingActionButton: FloatingActionButton(
+              child: Icon(Icons.add),
+              backgroundColor: Colors.red,
+              onPressed: (){
+                
+              },
+            ),
+          )
+        );
   }
 }
 
@@ -97,7 +106,6 @@ class SalidaItem extends StatelessWidget {
   final String fecha;
   final String total;
   final String valor;
-
   SalidaItem(
       {this.departamento,
       this.descripcion,
@@ -111,16 +119,14 @@ class SalidaItem extends StatelessWidget {
         backgroundColor: Colors.red,
         child: Text(departamento[0]),
       ),
-      title: Text(departamento, style: TextStyle(fontWeight: FontWeight.bold)),
+      title: Text('$departamento 02/AGO/2019', style: TextStyle(fontWeight: FontWeight.bold)),
       subtitle: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          Text(descripcion),
-          Text(
-            'Valor: $valor. Total: $total',
+          Text('$descripcion'),
+          Text('Valor: $valor\nTotal: $total',
             style: TextStyle(fontWeight: FontWeight.bold),
           ),
-          Text('Fecha: 02/AGO/2019'),
         ],
       ),
       isThreeLine: true,
