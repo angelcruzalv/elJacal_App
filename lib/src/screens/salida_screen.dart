@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/src/screens/addSalida.dart';
 import 'package:flutter_app/src/services/authentication.dart';
 import 'package:flutter_app/src/services/entrada_services.dart';
 import 'package:flutter_app/src/services/salida_services.dart';
+
+import 'package:flutter_app/src/widgets/app_textfield.dart';
+
 
 class SalidaScreen extends StatefulWidget {
   @override
@@ -26,7 +30,9 @@ class _SalidaScreenState extends State<SalidaScreen> {
 
   Widget build(BuildContext context) {
     return new MaterialApp(
-        theme: ThemeData(primaryColor: Colors.red),
+        theme: ThemeData(
+          primaryColor: Color.fromRGBO(255, 59, 48, 1.0),
+          ),
         home: new Scaffold(
             appBar: AppBar(
               title: const Text('Salidas'),
@@ -90,9 +96,9 @@ class _SalidaScreenState extends State<SalidaScreen> {
             ),
             floatingActionButton: FloatingActionButton(
               child: Icon(Icons.add),
-              backgroundColor: Colors.red,
+              backgroundColor:   Color.fromRGBO(255, 59, 48, 1.0),
               onPressed: (){
-                
+                Navigator.pushNamed(context, 'addSalida');
               },
             ),
           )
@@ -132,7 +138,9 @@ class SalidaItem extends StatelessWidget {
       isThreeLine: true,
       contentPadding: EdgeInsets.all(10.0),
       trailing: Icon(Icons.expand_more),
-      onTap: () {},
+      onTap: () {
+     
+      },
     );
   }
 }

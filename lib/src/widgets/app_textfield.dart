@@ -9,8 +9,9 @@ class AppTextField extends StatelessWidget {
   final bool autoValidate;
   final TextEditingController controller;
   final FocusNode focusNode; //enfoca el textfield
+  final TextInputType textType;
 
-  const AppTextField({this.inputText, this.onSaved, this.obscureText, this.validator, this.autoValidate, this.controller, this.focusNode});
+  const AppTextField({this.inputText, this.onSaved, this.obscureText, this.validator, this.autoValidate, this.controller, this.focusNode, this.textType});
 
   @override
   Widget build(BuildContext context) {
@@ -39,6 +40,7 @@ class AppTextField extends StatelessWidget {
       onSaved: onSaved,
       textAlign: TextAlign.center,
       obscureText: obscureText == null ? false: obscureText,
+      keyboardType: textType,
 
     );
   }

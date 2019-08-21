@@ -75,7 +75,8 @@ class _RegistrationScreenState extends State<RegistrationScreen>
         validator: validatePassword,
         inputText: "Ingresar contraseña",
         obscureText: true,
-        onSaved: (value) {});
+        onSaved: (value) {}
+      );
   }
 
   Widget _submitButton() {

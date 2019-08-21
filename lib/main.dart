@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:flutter_app/src/screens/addSalida.dart';
 import 'package:flutter_app/src/screens/ajustes_screen.dart';
 import 'package:flutter_app/src/screens/balance.dart';
 import 'package:flutter_app/src/screens/entrada_screen.dart';
@@ -30,6 +31,8 @@ class MyApp extends StatelessWidget {
         RegistrationScreen.routeName: (BuildContext context) => RegistrationScreen(),
         HomePage.routeName: (BuildContext context) => HomePage(),
         MyStatefulWidget.routeName: (BuildContext context) => MyStatefulWidget(),
+        AddSalidaScreen.routeName: (BuildContext context) => AddSalidaScreen(),
+
       },
     );
   }

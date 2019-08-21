@@ -44,7 +44,7 @@ class _LoginScreenState extends State<LoginScreen> with ValidationMixins {
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
-      resizeToAvoidBottomPadding: false,
+      resizeToAvoidBottomPadding: false, //permite elementos aunque no quepan
       body: ModalProgressHUD(
           //ProgressBar
           inAsyncCall: showSpinner, //progressbar
