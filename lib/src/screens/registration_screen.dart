@@ -30,15 +30,12 @@ class _RegistrationScreenState extends State<RegistrationScreen>
   Widget build(BuildContext context) {
     return new Scaffold(
         resizeToAvoidBottomPadding: false,
-        appBar: AppBar(
-          title: Text("Nuevo usuario"),
-        ),
         body: ModalProgressHUD(
             inAsyncCall: showSpinner,
             child: Form(
               key: _globalKey,
               child: Container(
-                padding: EdgeInsets.all(10.0),
+                padding: EdgeInsets.all(20.0),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -46,9 +43,17 @@ class _RegistrationScreenState extends State<RegistrationScreen>
                     SizedBox(
                       height: 48.0,
                     ),
+                    Image.asset(
+                      'images/logo_circ.png',
+                      height: 250,
+                      width: 250,
+                    ),
+                    SizedBox(
+                      height: 18.0,
+                    ),
                     _showErrorMessage(),
                     _emailField(),
-                    //SizedBox(height: 48.0,),
+                    SizedBox(height: 18.0,),
                     _passwordField(),
                     _submitButton(),
                     _cancelButton(),
@@ -81,7 +86,7 @@ class _RegistrationScreenState extends State<RegistrationScreen>
 
   Widget _submitButton() {
     return AppButton(
-        color: Colors.redAccent,
+        color: Color.fromRGBO(163, 33, 142, 1.0),
         name: "Registrar",
         onPressed: () async {
           if (_globalKey.currentState.validate()) {
@@ -108,7 +113,7 @@ class _RegistrationScreenState extends State<RegistrationScreen>
 
   Widget _cancelButton() {
     return AppButton(
-      color: Colors.blueAccent,
+      color: Color.fromRGBO(237, 64, 60, 1.0),
       name: "Cancelar",
       onPressed: () {},
     );

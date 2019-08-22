@@ -23,22 +23,17 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
             SizedBox(height: 20.0,),
             Image.asset('images/logo_circ.png', height: 250, width: 250,),
             AppButton(
-              color: Color.fromRGBO(255, 59, 48, 1.0),
+              color: Color.fromRGBO( 163, 33, 142, 1.0),
               name: "Iniciar sesión ",
               onPressed: (){
                 Navigator.pushNamed(context, '/login');
               },
             ),
-            AppButton(
-              color: Color.fromRGBO(255, 59, 48, 1.0),
-              name: "Registrarse ",
-              onPressed: (){
-                Navigator.pushNamed(context, '/registration');
-              },
-            ),
+           
             FlatButton(
-              child: Text("Olvidé mi contraseña", style: TextStyle(color: Colors.red, fontFamily: "Arial", fontSize: 15.0), textAlign:TextAlign.center,),
+              child: Text("Resgistrarse", style: TextStyle(color: Color.fromRGBO( 163, 33, 142, 1.0), fontFamily: "Arial", fontSize: 15.0), textAlign:TextAlign.center,),
               onPressed: (){
+                 Navigator.pushNamed(context, '/registration');
                 print("Presionado");
               },
             ),

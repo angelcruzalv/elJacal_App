@@ -31,8 +31,8 @@ class _SalidaScreenState extends State<SalidaScreen> {
   Widget build(BuildContext context) {
     return new MaterialApp(
         theme: ThemeData(
-          primaryColor: Color.fromRGBO(255, 59, 48, 1.0),
-          ),
+        primaryColor:  Color.fromRGBO(154, 209, 75, 1.0),
+      ),
         home: new Scaffold(
             appBar: AppBar(
               title: const Text('Salidas'),
@@ -42,9 +42,7 @@ class _SalidaScreenState extends State<SalidaScreen> {
                   children: <Widget>[
                     FlatButton(
                       child: Text(
-                        "Salir",
-                        style: TextStyle(color: Colors.white),
-                      ),
+                        "Salir",                      ),
                       onPressed: () {
                         Authentication().signOut();
                         Navigator.pushNamed(context, "");
@@ -96,7 +94,7 @@ class _SalidaScreenState extends State<SalidaScreen> {
             ),
             floatingActionButton: FloatingActionButton(
               child: Icon(Icons.add),
-              backgroundColor:   Color.fromRGBO(255, 59, 48, 1.0),
+              backgroundColor: Color.fromRGBO(237, 64, 60, 1.0),
               onPressed: (){
                 Navigator.pushNamed(context, 'addSalida');
               },
@@ -122,8 +120,8 @@ class SalidaItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListTile(
       leading: CircleAvatar(
-        backgroundColor: Colors.red,
-        child: Text(departamento[0]),
+        child: Text(departamento[0], style: TextStyle(color: Colors.white),),
+        backgroundColor: Color.fromRGBO(237, 64, 60, 1.0),
       ),
       title: Text('$departamento 02/AGO/2019', style: TextStyle(fontWeight: FontWeight.bold)),
       subtitle: Column(

@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
       title: _title,
       home: MyStatefulWidget(),
       theme: ThemeData(
-          primaryColor: Color.fromRGBO(255, 49, 48, 1.0),
+          primaryColor: Color.fromRGBO(237, 64, 60, 1.0),
       ),
       initialRoute: WelcomeScreen.routeName,
       routes: <String, WidgetBuilder>{
@@ -120,7 +120,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
           ),
         ],
         currentIndex: _selectedIndex,
-        selectedItemColor: Colors.red,
+        selectedItemColor: Color.fromRGBO(154, 209, 75, 1.0),
         onTap: _onItemTapped,
       ),
     );

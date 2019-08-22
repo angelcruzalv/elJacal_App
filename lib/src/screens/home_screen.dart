@@ -8,21 +8,30 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
-   return new Scaffold(
+   return new MaterialApp(
+     theme: ThemeData(
+        primaryColor:  Color.fromRGBO(154, 209, 75, 1.0),
+      ),
+     home: Scaffold(
      appBar: AppBar(
-        title: const Text('Inicio'),
-         automaticallyImplyLeading: false,
-        actions: <Widget>[
-          ButtonBar(children: <Widget>[
-            FlatButton(
-              child: Text("Salir", style: TextStyle(color: Colors.white),),
-              onPressed: (){
-                Authentication().signOut();
-                Navigator.pushNamed(context, "");
-              },
-            )
-          ],),
-        ],
+        title: const Text('Entradas', style: TextStyle(color: Color.fromRGBO(237, 64, 60, 1.0)),),
+              automaticallyImplyLeading: false,
+              actions: <Widget>[
+                ButtonBar(
+                  children: <Widget>[
+                    FlatButton(
+                      child: Text(
+                        "Salir",
+                        style: TextStyle(color: Color.fromRGBO(237, 64, 60, 1.0)),
+                      ),
+                      onPressed: () {
+                        Authentication().signOut();
+                        Navigator.pushNamed(context, "");
+                      },
+                    )
+                  ],
+                ),
+              ],
         
       ), 
      //appBar: AppBar(title: Text('Inicio')),
@@ -31,6 +40,7 @@ class _HomePageState extends State<HomePage> {
        
      ),
     
+   )
    );
   }
 }
