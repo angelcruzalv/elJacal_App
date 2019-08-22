@@ -31,18 +31,18 @@ class _SalidaScreenState extends State<SalidaScreen> {
   Widget build(BuildContext context) {
     return new MaterialApp(
         theme: ThemeData(
-        primaryColor:  Color.fromRGBO(154, 209, 75, 1.0),
+        primaryColor:  Color.fromRGBO(0, 191, 166, 1.0),
       ),
         home: new Scaffold(
             appBar: AppBar(
-              title: const Text('Salidas'),
+              title: const Text('Salidas', style: TextStyle(color: Color.fromRGBO(255, 255, 255, 1.0)),),
               automaticallyImplyLeading: false,
               actions: <Widget>[
                 ButtonBar(
                   children: <Widget>[
                     FlatButton(
                       child: Text(
-                        "Salir",                      ),
+                        "Salir", style: TextStyle(color: Color.fromRGBO(255, 255, 255, 1.0)),                      ),
                       onPressed: () {
                         Authentication().signOut();
                         Navigator.pushNamed(context, "");
@@ -94,7 +94,7 @@ class _SalidaScreenState extends State<SalidaScreen> {
             ),
             floatingActionButton: FloatingActionButton(
               child: Icon(Icons.add),
-              backgroundColor: Color.fromRGBO(237, 64, 60, 1.0),
+              backgroundColor: Color.fromRGBO(192, 0, 25, 1.0),
               onPressed: (){
                 Navigator.pushNamed(context, 'addSalida');
               },
@@ -121,9 +121,10 @@ class SalidaItem extends StatelessWidget {
     return ListTile(
       leading: CircleAvatar(
         child: Text(departamento[0], style: TextStyle(color: Colors.white),),
-        backgroundColor: Color.fromRGBO(237, 64, 60, 1.0),
+        backgroundColor: Color.fromRGBO(0, 121, 191, 1.0),
+        maxRadius: 30.0,
       ),
-      title: Text('$departamento 02/AGO/2019', style: TextStyle(fontWeight: FontWeight.bold)),
+      title: Text('$departamento', style: TextStyle(fontWeight: FontWeight.bold)),
       subtitle: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[

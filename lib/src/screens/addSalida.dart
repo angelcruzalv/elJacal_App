@@ -1,4 +1,5 @@
 import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
+import 'package:flutter_app/src/services/salida_services.dart';
 import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/src/widgets/app_button.dart';
@@ -11,27 +12,28 @@ class AddSalidaScreen extends StatefulWidget {
 }
 
 class AddSalidaScreenState extends State<AddSalidaScreen> {
-  TextEditingController _departamentoController = TextEditingController();
+  TextEditingController _valorController = TextEditingController();
   TextEditingController _descripcionController = TextEditingController();
-  var _currencies = ['Combustible', 'Mantenimiento', 'Sueldos'];
+  var _currencies = ['Combustible', 'Mantenimiento', 'Sueldos', 'Prueba'];
   var _currentItemSelected;
+  var item;
   final format = DateFormat('dd-MM-yyyy');
   @override
   Widget build(BuildContext context) {
     _currentItemSelected = _currencies[0];
-      return new Scaffold(
+      return  Scaffold(
         resizeToAvoidBottomPadding: false,
         appBar: AppBar(
-          backgroundColor: Color.fromRGBO(154, 209, 75, 1.0),
+          backgroundColor: Color.fromRGBO(0, 191, 166, 1.0),
           automaticallyImplyLeading: false,
-          title: Text("Agregar salida"),
+          title: Text("Agregar salida", style: TextStyle(color: Colors.white),),
           actions: <Widget>[
             ButtonBar(
               children: <Widget>[
                 FlatButton(
                   child: Text(
                     "Guardar",
-                    style: TextStyle(color: Color.fromRGBO(237, 64, 60, 1.0)),
+                    style: TextStyle(color: Color.fromRGBO(255, 255, 255, 1.0)),
                   ),
                   onPressed: () {},
                 )
@@ -69,13 +71,17 @@ class AddSalidaScreenState extends State<AddSalidaScreen> {
                       onChanged: (String newValueSelected) {
                         setState(() {
                           this._currentItemSelected = newValueSelected;
+                         // item = _currentItemSelected;
+                         print(_currentItemSelected);
                         });
+                        
                       },
                       value: _currentItemSelected,
                       elevation: 1,
-                    ),
+                    ), 
                   ],
                 ),
+    
                 SizedBox(
                   height: 28.0,
                 ),
@@ -99,7 +105,7 @@ class AddSalidaScreenState extends State<AddSalidaScreen> {
                     enabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.all(Radius.circular(32.0)),
                         borderSide:
-                            BorderSide(color: Color.fromRGBO(163, 33, 142, 1.0), width: 2)),
+                            BorderSide(color: Color.fromRGBO(0, 191, 166, 1.00), width: 2)),
                     focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.all(Radius.circular(32.0)),
                         borderSide:
@@ -108,6 +114,7 @@ class AddSalidaScreenState extends State<AddSalidaScreen> {
                   format: format,
                   onShowPicker: (context, currentValue) {
                     return showDatePicker(
+                      
                       context: context,
                       firstDate: DateTime(1900),
                       initialDate: currentValue ?? DateTime.now(),
@@ -130,10 +137,12 @@ class AddSalidaScreenState extends State<AddSalidaScreen> {
   Widget _descripcion() {
     return AppTextField(
       textType: TextInputType.text,
-      controller: _departamentoController,
+      controller: _descripcionController,
       inputText: 'Descripción',
       autoValidate: false,
-      onSaved: (value) {},
+      onSaved: (value) {
+        print(_descripcionController.text);
+      },
       
     );
   }
@@ -141,25 +150,39 @@ class AddSalidaScreenState extends State<AddSalidaScreen> {
   Widget _valor() {
     return AppTextField(
       textType: TextInputType.number,
-      controller: _descripcionController,
       inputText: "Costo ",
       autoValidate: false,
-      onSaved: (value) {},
+      controller: _valorController,
+      onSaved: (value) {
+        print(_valorController.text);
+      },
     );
   }
 
   Widget _buttonSave() {
     return AppButton(
-      color: Color.fromRGBO(163, 33, 142, 1.0),
+      color: Color.fromRGBO(192, 0, 25, 1.0),
       name: 'Guardar',
-      onPressed: () {},
+      onPressed: () {
+        SalidaService().save(
+          collectionName:"salidas",
+          collectionValues:{
+            'departamento': _currentItemSelected,
+            'descripcion': _descripcionController.text,
+            'valor': int.parse(_valorController.text),
+          }
+        );
+       
+      },
     );
   }
   Widget _buttonCancel() {
-    return AppButton(
-      color: Color.fromRGBO(163, 33, 142, 1.0),
-      name: 'Cancelar',
-      onPressed: () {},
-    );
+    return FlatButton(
+              child: Text("Cancelar", style: TextStyle(color: Color.fromRGBO(192, 0, 25, 1.0), fontFamily: "Arial", fontSize: 15.0), textAlign:TextAlign.center,),
+              onPressed: (){
+                 Navigator.pushNamed(context, '/registration');
+                print("Presionado");
+              },
+            );
   }
 }

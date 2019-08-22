@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/src/screens/addSalida.dart';
 import 'package:flutter_app/src/screens/ajustes_screen.dart';
-import 'package:flutter_app/src/screens/balance.dart';
+import 'package:flutter_app/src/screens/balanceScreen.dart';
 import 'package:flutter_app/src/screens/entrada_screen.dart';
 import 'package:flutter_app/src/screens/home_screen.dart';
 import 'package:flutter_app/src/screens/login_screen.dart';
@@ -120,7 +120,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
           ),
         ],
         currentIndex: _selectedIndex,
-        selectedItemColor: Color.fromRGBO(154, 209, 75, 1.0),
+        selectedItemColor: Color.fromRGBO(0, 191, 166, 1.0),
         onTap: _onItemTapped,
       ),
     );

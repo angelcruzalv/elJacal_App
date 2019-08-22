@@ -120,7 +120,7 @@ class _LoginScreenState extends State<LoginScreen> with ValidationMixins {
 
   Widget _submitButton() {
     return AppButton(
-        color: Color.fromRGBO(163, 33, 142, 1.0),
+        color: Color.fromRGBO(0, 191, 166, 1.0),
         name: "Iniciar sesión",
         onPressed: () async {
           if (_globalKey.currentState.validate()) {

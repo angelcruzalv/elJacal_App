@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/src/services/authentication.dart';
-class HomePage extends StatefulWidget {
-  static const String routeName= '/home';
+
+class BalanceScreen extends StatefulWidget {
   @override
-  _HomePageState createState() => new _HomePageState();
+  _BalanceScreenState createState() => new _BalanceScreenState();
  }
-class _HomePageState extends State<HomePage> {
+class _BalanceScreenState extends State<BalanceScreen> {
   @override
   Widget build(BuildContext context) {
-   return new MaterialApp(
+    return new MaterialApp(
      theme: ThemeData(
         primaryColor:  Color.fromRGBO(0, 191, 166, 1.0),
       ),
      home: Scaffold(
      appBar: AppBar(
-        title: const Text('Inicio', style: TextStyle(color: Color.fromRGBO(255, 255, 255, 1.0)),),
+        title: const Text('Balance', style: TextStyle(color: Color.fromRGBO(255, 255, 255, 1.0)),),
               automaticallyImplyLeading: false,
               actions: <Widget>[
                 ButtonBar(
@@ -35,7 +35,7 @@ class _HomePageState extends State<HomePage> {
       ), 
      //appBar: AppBar(title: Text('Inicio')),
      body: Center(
-       child: Text("Hola desde homescreen"),
+       child: Text("Hola desde balanceScreen"),
        
      ),
     
@@ -43,4 +43,3 @@ class _HomePageState extends State<HomePage> {
    );
   }
 }
-
