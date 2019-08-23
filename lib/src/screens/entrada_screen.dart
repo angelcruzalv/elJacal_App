@@ -72,7 +72,7 @@ class _EntradaScreen extends State<EntradaScreen> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          // Add your onPressed code here!
+          Navigator.pushNamed(context, 'addEntrada');
         },
         child: Icon(Icons.add,),
         backgroundColor:  Color.fromRGBO(192, 0, 25, 1.0),
@@ -102,7 +102,7 @@ class EntradaItem extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         Text('$descripcion'),
-        Text('Valor: $valor \nTotal: xx', style: TextStyle(fontWeight: FontWeight.bold),)
+        Text('Valor: $valor \n', style: TextStyle(fontWeight: FontWeight.bold),)
       ],
     ),
   isThreeLine: true,

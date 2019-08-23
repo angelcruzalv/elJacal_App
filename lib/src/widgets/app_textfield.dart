@@ -28,11 +28,11 @@ class AppTextField extends StatelessWidget {
         ),
         enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.all(Radius.circular(32.0)),
-            borderSide: BorderSide(color: Color.fromRGBO(0, 191, 166, 1.0), width: 2)
+            borderSide: BorderSide(color: Color.fromRGBO(192, 0, 25, 1.0  ), width: 2)
         ),
         focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.all(Radius.circular(32.0)),
-            borderSide: BorderSide(color: Color.fromRGBO(0, 121, 191, 1.0), width: 2)
+            borderSide: BorderSide(color: Color.fromRGBO(255, 0, 25, 1.0 ), width: 2)
         ),
 
 

@@ -16,16 +16,16 @@ class AddSalidaScreenState extends State<AddSalidaScreen> {
   TextEditingController _descripcionController = TextEditingController();
   var _currencies = ['Combustible', 'Mantenimiento', 'Sueldos', 'Prueba'];
   var _currentItemSelected;
-  var item;
   final format = DateFormat('dd-MM-yyyy');
   @override
+  
   Widget build(BuildContext context) {
-    _currentItemSelected = _currencies[0];
-      return  Scaffold(
+    // _currentItemSelected = _currencies[0];
+     return Scaffold(
         resizeToAvoidBottomPadding: false,
         appBar: AppBar(
           backgroundColor: Color.fromRGBO(0, 191, 166, 1.0),
-          automaticallyImplyLeading: false,
+          automaticallyImplyLeading: true,
           title: Text("Agregar salida", style: TextStyle(color: Colors.white),),
           actions: <Widget>[
             ButtonBar(
@@ -41,6 +41,7 @@ class AddSalidaScreenState extends State<AddSalidaScreen> {
             )
           ],
         ),
+        
         body: Container(
           padding: EdgeInsets.all(30.0),
           child: Column(
@@ -73,7 +74,9 @@ class AddSalidaScreenState extends State<AddSalidaScreen> {
                           this._currentItemSelected = newValueSelected;
                          // item = _currentItemSelected;
                          print(_currentItemSelected);
-                        });
+                        }
+                      );
+                      _currentItemSelected = _currentItemSelected;
                         
                       },
                       value: _currentItemSelected,
@@ -132,6 +135,7 @@ class AddSalidaScreenState extends State<AddSalidaScreen> {
         )
       );
       
+      
   }
 
   Widget _descripcion() {
@@ -172,6 +176,7 @@ class AddSalidaScreenState extends State<AddSalidaScreen> {
             'valor': int.parse(_valorController.text),
           }
         );
+        Navigator.pop(context);
        
       },
     );
@@ -180,7 +185,7 @@ class AddSalidaScreenState extends State<AddSalidaScreen> {
     return FlatButton(
               child: Text("Cancelar", style: TextStyle(color: Color.fromRGBO(192, 0, 25, 1.0), fontFamily: "Arial", fontSize: 15.0), textAlign:TextAlign.center,),
               onPressed: (){
-                 Navigator.pushNamed(context, '/registration');
+                Navigator.pop(context);
                 print("Presionado");
               },
             );

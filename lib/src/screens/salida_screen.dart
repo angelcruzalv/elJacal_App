@@ -122,14 +122,13 @@ class SalidaItem extends StatelessWidget {
       leading: CircleAvatar(
         child: Text(departamento[0], style: TextStyle(color: Colors.white),),
         backgroundColor: Color.fromRGBO(0, 121, 191, 1.0),
-        maxRadius: 30.0,
       ),
       title: Text('$departamento', style: TextStyle(fontWeight: FontWeight.bold)),
       subtitle: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Text('$descripcion'),
-          Text('Valor: $valor\nTotal: $total',
+          Text('Valor: $valor\n',
             style: TextStyle(fontWeight: FontWeight.bold),
           ),
         ],
