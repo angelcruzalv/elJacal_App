@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/src/services/entrada_services.dart';
 import 'package:flutter_app/src/widgets/app_button.dart';
 import 'package:flutter_app/src/widgets/app_textfield.dart';
 
@@ -54,7 +55,6 @@ class _AddEntradaScreenState extends State<AddEntradaScreen> {
                     setState(() {
                       this._currentItemSelected = newValueSelected;
                       // item = _currentItemSelected;
-                      print(_currentItemSelected);
                     });
                   },
                   value: _currentItemSelected,
@@ -112,7 +112,17 @@ class _AddEntradaScreenState extends State<AddEntradaScreen> {
     return AppButton(
       color: Color.fromRGBO(192, 0, 25, 1.0),
       name: 'Guardar',
-      onPressed: () {},
+      onPressed: () {
+        EntradaService().save(
+          collectionName:"entradas",
+          collectionValues:{
+            'departamento': _currentItemSelected,
+            'descripcion': _descripcionController.text,
+            'valor': int.parse(_valorController.text),
+          }
+        );
+        Navigator.pop(context);
+      },
     );
   }
 
@@ -128,7 +138,6 @@ class _AddEntradaScreenState extends State<AddEntradaScreen> {
       ),
       onPressed: () {
         Navigator.pop(context);
-        print("Presionado");
       },
     );
   }

@@ -176,8 +176,7 @@ class AddSalidaScreenState extends State<AddSalidaScreen> {
             'valor': int.parse(_valorController.text),
           }
         );
-        Navigator.pop(context);
-       
+        Navigator.pop(context);      
       },
     );
   }
@@ -186,7 +185,6 @@ class AddSalidaScreenState extends State<AddSalidaScreen> {
               child: Text("Cancelar", style: TextStyle(color: Color.fromRGBO(192, 0, 25, 1.0), fontFamily: "Arial", fontSize: 15.0), textAlign:TextAlign.center,),
               onPressed: (){
                 Navigator.pop(context);
-                print("Presionado");
               },
             );
   }
