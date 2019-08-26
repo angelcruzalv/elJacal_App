@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/src/screens/addSalida.dart';
 import 'package:flutter_app/src/services/authentication.dart';
-import 'package:flutter_app/src/services/entrada_services.dart';
 import 'package:flutter_app/src/services/salida_services.dart';
-
-import 'package:flutter_app/src/widgets/app_textfield.dart';
+import 'package:intl/intl.dart'; 
 
 
 class SalidaScreen extends StatefulWidget {
@@ -61,9 +58,10 @@ class _SalidaScreenState extends State<SalidaScreen> {
                         var salidas = snapshot.data.documents;
                         //List<Text> salidaWidgets = [];
                         List<SalidaItem> salidaItems = [];
+                        List<String> salidaItemsString = [];
                         for (var salida in salidas) {
-                          final salidaDpto = salida.data["departamento"];
-                          final salidaDesc = salida.data["descripcion"];
+                          final salidaDpto = salida.data["departamento"].toString();
+                          final salidaDesc = salida.data["descripcion"].toString();
                           final salidaFecha = salida.data["fecha"].toString();
                           final salidaTotal = salida.data["total"].toString();
                           final salidaValor = salida.data["valor"].toString();
@@ -75,8 +73,11 @@ class _SalidaScreenState extends State<SalidaScreen> {
                             total: salidaTotal,
                             fecha: salidaFecha,
                           ));
+                          salidaItemsString.add(salidaFecha);
+                          
                         }
-
+                        salidaItemsString.sort((a, b) => a.compareTo(b));
+                        print('Ordenado: $salidaItemsString');
                         return Flexible(
                             child: MaterialApp(                                                         
                                 //theme: ThemeData(primaryColor: Colors.red),
@@ -128,14 +129,17 @@ class SalidaItem extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Text('$descripcion'),
-          Text('Valor: $valor\n',
+          Text('Valor: $valor\nTotal: $total',
             style: TextStyle(fontWeight: FontWeight.bold),
           ),
         ],
       ),
       isThreeLine: true,
       contentPadding: EdgeInsets.all(10.0),
-      trailing: Icon(Icons.expand_more),
+      trailing: Text(
+        fecha[0]+fecha[1]+fecha[2]+fecha[3]+ fecha[4]
+        +'\n'+fecha[6]+fecha[7]+fecha[8]+fecha[9]
+        ,style: TextStyle(fontSize: 10.0),),
       onTap: () {
      
       },

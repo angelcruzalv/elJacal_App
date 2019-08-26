@@ -14,19 +14,23 @@ class AddSalidaScreen extends StatefulWidget {
 class AddSalidaScreenState extends State<AddSalidaScreen> {
   TextEditingController _valorController = TextEditingController();
   TextEditingController _descripcionController = TextEditingController();
+  TextEditingController _dateController = TextEditingController();
   var _currencies = ['Combustible', 'Mantenimiento', 'Sueldos', 'Prueba'];
   var _currentItemSelected;
-  final format = DateFormat('dd-MM-yyyy');
+  final format = DateFormat('dd/MM/yyyy');
+
   @override
-  
   Widget build(BuildContext context) {
     // _currentItemSelected = _currencies[0];
-     return Scaffold(
+    return Scaffold(
         resizeToAvoidBottomPadding: false,
         appBar: AppBar(
           backgroundColor: Color.fromRGBO(0, 191, 166, 1.0),
           automaticallyImplyLeading: true,
-          title: Text("Agregar salida", style: TextStyle(color: Colors.white),),
+          title: Text(
+            "Agregar salida",
+            style: TextStyle(color: Colors.white),
+          ),
           actions: <Widget>[
             ButtonBar(
               children: <Widget>[
@@ -41,9 +45,8 @@ class AddSalidaScreenState extends State<AddSalidaScreen> {
             )
           ],
         ),
-        
         body: Container(
-          padding: EdgeInsets.all(30.0),
+          padding: EdgeInsets.all(25.0),
           child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -72,19 +75,17 @@ class AddSalidaScreenState extends State<AddSalidaScreen> {
                       onChanged: (String newValueSelected) {
                         setState(() {
                           this._currentItemSelected = newValueSelected;
-                         // item = _currentItemSelected;
-                         print(_currentItemSelected);
-                        }
-                      );
-                      _currentItemSelected = _currentItemSelected;
-                        
+                          // item = _currentItemSelected;
+                          print(_currentItemSelected);
+                        });
+                        _currentItemSelected = _currentItemSelected;
                       },
                       value: _currentItemSelected,
                       elevation: 1,
-                    ), 
+                    ),
                   ],
                 ),
-    
+
                 SizedBox(
                   height: 28.0,
                 ),
@@ -98,6 +99,7 @@ class AddSalidaScreenState extends State<AddSalidaScreen> {
                 ),
                 //Text('Ingresar fecha'),
                 DateTimeField(
+                  controller: _dateController,
                   textAlign: TextAlign.center,
                   decoration: InputDecoration(
                     contentPadding:
@@ -107,35 +109,34 @@ class AddSalidaScreenState extends State<AddSalidaScreen> {
                         borderRadius: BorderRadius.all(Radius.circular(32.0))),
                     enabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.all(Radius.circular(32.0)),
-                        borderSide:
-                            BorderSide(color: Color.fromRGBO(0, 191, 166, 1.00), width: 2)),
+                        borderSide: BorderSide(
+                            color: Color.fromRGBO(192, 0, 25, 1.0), width: 2)),
                     focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.all(Radius.circular(32.0)),
-                        borderSide:
-                            BorderSide(color: Color.fromRGBO(255, 149, 0, 1.0), width: 2)),
+                        borderSide: BorderSide(
+                            color: Color.fromRGBO(255, 0, 25, 1.0), width: 2)),
                   ),
                   format: format,
                   onShowPicker: (context, currentValue) {
                     return showDatePicker(
-                      
                       context: context,
                       firstDate: DateTime(1900),
                       initialDate: currentValue ?? DateTime.now(),
                       lastDate: DateTime(2100),
                     );
                   },
+                  onChanged: (value) {
+                    print(_dateController.text);
+                  },
                 ),
                 SizedBox(
                   height: 28.0,
                 ),
                 _buttonSave(),
-               
+
                 _buttonCancel(),
               ]),
-        )
-      );
-      
-      
+        ));
   }
 
   Widget _descripcion() {
@@ -147,7 +148,6 @@ class AddSalidaScreenState extends State<AddSalidaScreen> {
       onSaved: (value) {
         print(_descripcionController.text);
       },
-      
     );
   }
 
@@ -157,9 +157,6 @@ class AddSalidaScreenState extends State<AddSalidaScreen> {
       inputText: "Costo ",
       autoValidate: false,
       controller: _valorController,
-      onSaved: (value) {
-        print(_valorController.text);
-      },
     );
   }
 
@@ -168,24 +165,32 @@ class AddSalidaScreenState extends State<AddSalidaScreen> {
       color: Color.fromRGBO(192, 0, 25, 1.0),
       name: 'Guardar',
       onPressed: () {
-        SalidaService().save(
-          collectionName:"salidas",
-          collectionValues:{
-            'departamento': _currentItemSelected,
-            'descripcion': _descripcionController.text,
-            'valor': int.parse(_valorController.text),
-          }
-        );
-        Navigator.pop(context);      
+        SalidaService().save(collectionName: "salidas", collectionValues: {
+          'departamento': _currentItemSelected,
+          'descripcion': _descripcionController.text,
+          'valor': int.parse(_valorController.text),
+          'fecha': _dateController.text,
+          'total': int.parse(_valorController.text) +
+              int.parse(_valorController.text)
+        });
+        Navigator.pop(context);
       },
     );
   }
+
   Widget _buttonCancel() {
     return FlatButton(
-              child: Text("Cancelar", style: TextStyle(color: Color.fromRGBO(192, 0, 25, 1.0), fontFamily: "Arial", fontSize: 15.0), textAlign:TextAlign.center,),
-              onPressed: (){
-                Navigator.pop(context);
-              },
-            );
+      child: Text(
+        "Cancelar",
+        style: TextStyle(
+            color: Color.fromRGBO(192, 0, 25, 1.0),
+            fontFamily: "Arial",
+            fontSize: 15.0),
+        textAlign: TextAlign.center,
+      ),
+      onPressed: () {
+        Navigator.pop(context);
+      },
+    );
   }
 }

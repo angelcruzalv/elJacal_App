@@ -9,4 +9,6 @@ class SalidaService{
   Stream<QuerySnapshot> getSalidasStream(){
     return _firestore.collection("salidas").snapshots();
   }
+  
+
 }

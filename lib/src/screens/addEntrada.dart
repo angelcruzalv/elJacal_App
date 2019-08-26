@@ -1,7 +1,9 @@
+import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/src/services/entrada_services.dart';
 import 'package:flutter_app/src/widgets/app_button.dart';
 import 'package:flutter_app/src/widgets/app_textfield.dart';
+import 'package:intl/intl.dart';
 
 class AddEntradaScreen extends StatefulWidget {
   static const String routeName = "\addEntrada";
@@ -12,20 +14,23 @@ class AddEntradaScreen extends StatefulWidget {
 class _AddEntradaScreenState extends State<AddEntradaScreen> {
   TextEditingController _valorController = TextEditingController();
   TextEditingController _descripcionController = TextEditingController();
+  TextEditingController _dateController = TextEditingController();
 
   var _currencies = ['Ventas'];
   var _currentItemSelected;
+  final format = DateFormat('dd/MM/yyyy');
 
   @override
   Widget build(BuildContext context) {
     _currentItemSelected = _currencies[0];
     return new Scaffold(
+      resizeToAvoidBottomPadding: false,
       appBar: AppBar(
         title: Text('Agregar Entrada'),
         backgroundColor: Color.fromRGBO(0, 191, 166, 1.0),
       ),
       body: Container(
-        padding: EdgeInsets.all(30.0),
+        padding: EdgeInsets.all(25.0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -73,6 +78,40 @@ class _AddEntradaScreenState extends State<AddEntradaScreen> {
             SizedBox(
               height: 18.0,
             ),
+            DateTimeField(
+              controller: _dateController,
+              textAlign: TextAlign.center,
+              decoration: InputDecoration(
+                contentPadding:
+                    EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
+                hintText: 'Seleccionar fecha',
+                border: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(32.0))),
+                enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(32.0)),
+                    borderSide: BorderSide(
+                        color: Color.fromRGBO(192, 0, 25, 1.0), width: 2)),
+                focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(32.0)),
+                    borderSide: BorderSide(
+                        color: Color.fromRGBO(255, 0, 25, 1.0), width: 2)),
+              ),
+              format: format,
+              onShowPicker: (context, currentValue) {
+                return showDatePicker(
+                  context: context,
+                  firstDate: DateTime(1900),
+                  initialDate: currentValue ?? DateTime.now(),
+                  lastDate: DateTime(2100),
+                );
+              },
+              onChanged: (value) {
+                print(_dateController.text);
+              },
+            ),
+            SizedBox(
+              height: 28.0,
+            ),
             _buttonSave(),
             SizedBox(
               height: 18.0,
@@ -113,14 +152,12 @@ class _AddEntradaScreenState extends State<AddEntradaScreen> {
       color: Color.fromRGBO(192, 0, 25, 1.0),
       name: 'Guardar',
       onPressed: () {
-        EntradaService().save(
-          collectionName:"entradas",
-          collectionValues:{
-            'departamento': _currentItemSelected,
-            'descripcion': _descripcionController.text,
-            'valor': int.parse(_valorController.text),
-          }
-        );
+        EntradaService().save(collectionName: "entradas", collectionValues: {
+          'departamento': _currentItemSelected,
+          'descripcion': _descripcionController.text,
+          'valor': int.parse(_valorController.text),
+          'fecha': _dateController.text
+        });
         Navigator.pop(context);
       },
     );

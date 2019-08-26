@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/src/services/authentication.dart';
 import 'package:flutter_app/src/services/entrada_services.dart';
-import 'package:flutter_app/src/services/salida_services.dart';
 
 
 class EntradaScreen extends StatefulWidget {
@@ -106,7 +105,10 @@ class EntradaItem extends StatelessWidget {
       ],
     ),
   isThreeLine: true,
-  trailing: Icon(Icons.expand_more),
+  trailing: Text(
+        fecha[0]+fecha[1]+fecha[2]+fecha[3]+ fecha[4]
+        +'\n'+fecha[6]+fecha[7]+fecha[8]+fecha[9]
+        ,style: TextStyle(fontSize: 10.0),),
   onTap: (){},
  );
  }
