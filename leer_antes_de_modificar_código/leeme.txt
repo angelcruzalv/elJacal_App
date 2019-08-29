@@ -1,0 +1,3 @@
+Antes de comenzar a editar este código, debes teber en cuenta lo siguiente:
+Existe una copia idéntica en GitHub, la cuál puedes recuperar pidiendo acceso 
+en https://github.com/angelcruzalv 

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/src/widgets/app_button.dart';
+//Statefulwidget tutorial
+//https://api.flutter.dev/flutter/widgets/StatefulWidget-class.html
 
 class WelcomeScreen extends StatefulWidget {
   static const String routeName= '';
@@ -7,7 +9,7 @@ class WelcomeScreen extends StatefulWidget {
   @override
   _WelcomeScreenState createState() => new _WelcomeScreenState();
 }
-
+//Este es la pantalla inicial, la pantalla inicial se cambia desde el main.dart
 class _WelcomeScreenState extends State<WelcomeScreen> {
 
   @override

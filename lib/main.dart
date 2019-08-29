@@ -9,6 +9,9 @@ import 'package:flutter_app/src/screens/login_screen.dart';
 import 'package:flutter_app/src/screens/registration_screen.dart';
 import 'package:flutter_app/src/screens/welcome_screen.dart';
 import 'package:flutter_app/src/screens/salida_screen.dart';
+//Favor de leer todos los comentarios, para que puedas entender cómo
+//funciona esta aplicación
+//si tienes dudas puedes llamar a Ángel C. al 4521129745
 
 void main() => runApp(MyApp());
 
@@ -24,6 +27,10 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
           primaryColor: Color.fromRGBO(237, 64, 60, 1.0),
       ),
+      //Main es el archivo que se lee antes de iniciar la aplicación
+      //aquí se agregan todas las páginas consu respectiva ruta, el initialRoute es
+      //la página que inicia al iniciar la aplicación
+      //la ruta inicial es WelcomeScreen, 
       initialRoute: WelcomeScreen.routeName,
       routes: <String, WidgetBuilder>{
         WelcomeScreen.routeName : (BuildContext context) => WelcomeScreen(),
@@ -53,27 +60,11 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
   static const TextStyle optionStyle =
       TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
  final List<Widget> _widgetOptions = <Widget>[
-    /*Text(
-      'Index 0: Inicio',
-      style: optionStyle,
-    ), 
-    Text(
-      'Index 1: Entrada',
-      style: optionStyle,
-    ),
-    Text(
-      'Index 2: Salida',
-      style: optionStyle,
-    ),
-    Text(
-      'Index 3: Balance',
-      style: optionStyle,
-    ),
-    Text(
-      'Index 4: Settings',
-      style: optionStyle,
-    ),
-    */
+    //se ponen las diferentes Screen, en el orden deseado 
+    //para acceder desde la barra de navegación
+    //Cómo crear un ButtonNavigarorBar
+    //https://api.flutter.dev/flutter/material/BottomNavigationBar-class.html
+
     HomePage(),
     EntradaScreen(),
     SalidaScreen(),
