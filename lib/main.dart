@@ -92,7 +92,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
-            title: Text('Inicio'),
+            title: Text('Inicio0'),
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.arrow_downward),
