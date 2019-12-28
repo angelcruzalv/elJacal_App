@@ -36,7 +36,6 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
               child: Text("Resgistrarse", style: TextStyle(color: Color.fromRGBO(0, 191, 166, 1.0), fontFamily: "Arial", fontSize: 15.0), textAlign:TextAlign.center,),
               onPressed: (){
                  Navigator.pushNamed(context, '/registration');
-                print("Presionado");
               },
             ),
           ],

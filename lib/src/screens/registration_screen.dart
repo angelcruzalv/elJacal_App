@@ -12,14 +12,14 @@ class RegistrationScreen extends StatefulWidget {
   _RegistrationScreenState createState() => new _RegistrationScreenState();
 }
 
-class _RegistrationScreenState extends State<RegistrationScreen>
-    with ValidationMixins {
+class _RegistrationScreenState extends State<RegistrationScreen>  with ValidationMixins {
   bool showSpinner = false;
   final GlobalKey<FormState> _globalKey = GlobalKey<FormState>(); //validar
   bool _autoValidate = false;
   TextEditingController _emailController = TextEditingController();
   TextEditingController _passwordController = TextEditingController();
   String _errorMessage = "";
+
   void setSpinnerStatus(bool status) {
     setState(() {
       showSpinner = status;
@@ -30,6 +30,9 @@ class _RegistrationScreenState extends State<RegistrationScreen>
   Widget build(BuildContext context) {
     return new Scaffold(
         resizeToAvoidBottomPadding: false,
+        appBar: AppBar(
+          title: Text("Registrar"),
+        ),
         body: ModalProgressHUD(
             inAsyncCall: showSpinner,
             child: Form(
@@ -41,13 +44,13 @@ class _RegistrationScreenState extends State<RegistrationScreen>
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: <Widget>[
                     SizedBox(
-                      height: 48.0,
+                      height: 20.0,
                     ),
-                    Image.asset(
+                    /*Image.asset(
                       'images/logo_circ.png',
                       height: 250,
                       width: 250,
-                    ),
+                    ),*/
                     SizedBox(
                       height: 18.0,
                     ),
@@ -56,7 +59,13 @@ class _RegistrationScreenState extends State<RegistrationScreen>
                     SizedBox(height: 18.0,),
                     _passwordField(),
                     _submitButton(),
-                    _cancelButton(),
+
+                    FlatButton(
+                       child: Text("Cancelar", style: TextStyle(color: Color.fromRGBO(237, 64, 60, 1.0), fontFamily: "Arial", fontSize: 15.0), textAlign:TextAlign.center,),
+                       onPressed: (){
+                         Navigator.pushNamed(context, '');
+                      }
+                   ),             
                   ],
                 ),
               ),
@@ -86,7 +95,7 @@ class _RegistrationScreenState extends State<RegistrationScreen>
 
   Widget _submitButton() {
     return AppButton(
-        color: Color.fromRGBO(163, 33, 142, 1.0),
+        color: Color.fromRGBO(0, 191, 166, 1.0),
         name: "Registrar",
         onPressed: () async {
           if (_globalKey.currentState.validate()) {
@@ -111,13 +120,7 @@ class _RegistrationScreenState extends State<RegistrationScreen>
         });
   }
 
-  Widget _cancelButton() {
-    return AppButton(
-      color: Color.fromRGBO(237, 64, 60, 1.0),
-      name: "Cancelar",
-      onPressed: () {},
-    );
-  }
+ 
 
   Widget _showErrorMessage() {
     if (_errorMessage.length > 0 && _errorMessage != null) {

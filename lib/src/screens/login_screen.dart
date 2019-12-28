@@ -21,6 +21,8 @@ class _LoginScreenState extends State<LoginScreen> with ValidationMixins {
   TextEditingController _emailController = TextEditingController();
   TextEditingController _passwordController = TextEditingController();
   FocusNode _focusNode;
+
+  
   String _errorMessage="";
 
   void setSpinnerStatus(bool status) {
@@ -45,6 +47,9 @@ class _LoginScreenState extends State<LoginScreen> with ValidationMixins {
   Widget build(BuildContext context) {
     return new Scaffold(
       resizeToAvoidBottomPadding: false, //permite elementos aunque no quepan
+      appBar: AppBar(
+        title: Text('Iniciar sesión'),       
+      ),
       body: ModalProgressHUD(
           //ProgressBar
           inAsyncCall: showSpinner, //progressbar
@@ -56,14 +61,13 @@ class _LoginScreenState extends State<LoginScreen> with ValidationMixins {
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: <Widget>[
-                    SizedBox(
-                      height: 20.0,
-                    ),
+                    
+                    /*
                     Image.asset(
                       'images/logo_circ.png',
                       height: 250,
                       width: 250,
-                    ),
+                    ),*/
                     SizedBox(
                       height: 48.0,
                     ),
