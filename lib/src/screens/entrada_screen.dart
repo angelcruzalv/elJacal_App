@@ -13,24 +13,18 @@ class _EntradaScreen extends State<EntradaScreen> {
     return new MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-
-
-        
         body: Container(
-              decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                     colors: <Color>[
-                  //Color(0xFF78ffd6),
-                  Color(0xff0079991),
-                  Color(0xff0079991),
-                  Color(0xff007991),
-                  Color(0xff007991),
-                  Color(0xff0079991),
-                  Color(0xff0079991),
-                  // Color(0xFF78ffd6),
-                       ],
-                   )
-                ),
+          decoration: BoxDecoration(
+              gradient: LinearGradient(
+            colors: <Color>[
+              //Color(0xFF78ffd6),
+              Color(0xff0079991),
+              Color(0xff007991),
+              Color(0xff0079991),
+              Color(0xFF78ffd6),
+              // Color(0xFF78ffd6),
+            ],
+          )),
           child: ListView(
             children: <Widget>[
               Padding(
@@ -55,7 +49,6 @@ class _EntradaScreen extends State<EntradaScreen> {
                       ),
                     ),
                     Container(
-                     
                       width: 125.0,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -75,56 +68,55 @@ class _EntradaScreen extends State<EntradaScreen> {
                 height: 15.0,
               ),
               Container(
-                height: MediaQuery.of(context).size.height - 50,
-                width: MediaQuery.of(context).size.width,
-                decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(35.0),
-                        topRight: Radius.circular(35.0))),
-                child: Container(
-                  padding: EdgeInsets.symmetric(vertical: 10.0),
+                  height: MediaQuery.of(context).size.height - 50,
+                  width: MediaQuery.of(context).size.width,
+                  decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(35.0),
+                          topRight: Radius.circular(35.0))),
+                  child: Container(
+                    padding: EdgeInsets.symmetric(vertical: 10.0),
 
-                  child: Column(
-                    children: <Widget>[
-                      StreamBuilder(
-                        stream: EntradaService().getEntradasStream(),
-                        builder: (context, snapshot) {
-                          if (snapshot.hasData) {
-                            var entradas = snapshot.data.documents;
-                            List<EntradaItem> entradaItems = [];
-                            for (var entrada in entradas) {
-                              final entradaDpto = entrada.data['departamento'];
-                              final entradaDesc = entrada.data['descripcion'];
-                              final entradaFecha =
-                                  entrada.data['fecha'].toString();
-                              final entradaValor =
-                                  entrada.data['valor'].toString();
-                              entradaItems.add(EntradaItem(
-                                departamento: entradaDpto,
-                                descripcion: entradaDesc,
-                                fecha: entradaFecha,
-                                valor: entradaValor,
-                              ));
-                            }
-                            return Flexible(
-                              child: MaterialApp(
-                                home: Card(
-                                  child: ListView(
-                                    children: entradaItems,
+                    child: Column(
+                      children: <Widget>[
+                        StreamBuilder(
+                            stream: EntradaService().getEntradasStream(),
+                            builder: (context, snapshot) {
+                              if (snapshot.hasData) {
+                                var entradas = snapshot.data.documents;
+                                List<EntradaItem> entradaItems = [];
+                                for (var entrada in entradas) {
+                                  final entradaDpto =
+                                      entrada.data['departamento'];
+                                  final entradaDesc =
+                                      entrada.data['descripcion'];
+                                  final entradaFecha =
+                                      entrada.data['fecha'].toString();
+                                  final entradaValor =
+                                      entrada.data['valor'].toString();
+                                  entradaItems.add(EntradaItem(
+                                    departamento: entradaDpto,
+                                    descripcion: entradaDesc,
+                                    fecha: entradaFecha,
+                                    valor: entradaValor,
+                                  ));
+                                }
+                                return Flexible(
+                                  child: MaterialApp(
+                                    home: Card(
+                                      child: ListView(
+                                        children: entradaItems,
+                                      ),
+                                    ),
                                   ),
-                                ),
-                              ),
-                            );
-                          }
-                        }
-                      )
-                    ],
+                                );
+                              }
+                            })
+                      ],
+                    ),
+                    //  padding: EdgeInsets.symmetric(vertical: 10.0),
 
-                  ),
-                 //  padding: EdgeInsets.symmetric(vertical: 10.0),
-               
-                    
                     // StreamBuilder
                     // padding: EdgeInsets.symmetric(vertical: 10.0),
                     // StreamBuilder(
@@ -159,10 +151,7 @@ class _EntradaScreen extends State<EntradaScreen> {
                     //       }
                     //     }
                     //   )
-                    
-                
-                )
-              )
+                  ))
             ],
           ),
         ),
@@ -225,9 +214,7 @@ class EntradaItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
         padding: EdgeInsets.only(right: 20.0),
-        decoration: BoxDecoration(
-          color: Colors.transparent
-        ),
+        decoration: BoxDecoration(color: Colors.transparent),
         child: Card(
           color: Colors.transparent,
           elevation: 0.0,
