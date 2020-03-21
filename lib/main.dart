@@ -67,7 +67,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
     HomePage(),
     EntradaScreen(),
     SalidaScreen(),
-    BalanceScreen(),
+    // BalanceScreen(),
     AjustesScreen()
   ];
 
@@ -103,10 +103,10 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
             icon: Icon(Icons.arrow_upward),
             title: Text('Salida'),
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.attach_money),
-            title: Text('Balance'),
-          ),
+          // BottomNavigationBarItem(
+          //   icon: Icon(Icons.attach_money),
+          //   title: Text('Balance'),
+          // ),
           BottomNavigationBarItem(
             icon: Icon(Icons.settings_applications),
             title: Text('Ajustes'),
