@@ -103,9 +103,13 @@ class _HomePageState extends State<HomePage> {
                        child: GlowingOverscrollIndicator(
                          axisDirection: AxisDirection.down,
                          color: Color(0xFF78ffd6), 
+                         
                           child: ListView(
+                            padding: EdgeInsets.symmetric(vertical: 10.0),
                            children: <Widget>[
-                           
+                           _cardIngresos(),
+                           _cardEgresos(),
+                           _cardBalance(),
                          
                        ],
                      ),
@@ -125,5 +129,87 @@ class _HomePageState extends State<HomePage> {
      ),
     );
   }
+  Widget _cardIngresos() {
+    return Container(
+        padding: EdgeInsets.only(right: 20.0),
+        child: Card(
+          color: Colors.transparent,
+          elevation: 0.0,
+          child: Column(
+            children: <Widget>[
+              ListTile(
+                leading: Icon(Icons.account_balance_wallet, color: Colors.green,),
+                title: Text('Ingresos totales'),
+                subtitle:
+                    Text('Aquí se muestran todos los ingresos de ventas '),
+                
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: <Widget>[
+                  Text('12345678', style: TextStyle(fontSize: 22.0, color: Colors.green ))
+                ],
+              )
+            ],
+          ),
+        ));
+  }
+   Widget _cardEgresos() {
+    return Container(
+        padding: EdgeInsets.only(right: 20.0),
+        child: Card(
+          color: Colors.transparent,
+          elevation: 0.0,
+          child: Column(
+            children: <Widget>[
+              ListTile(
+                leading: Icon(Icons.account_balance_wallet, color: Colors.red,),
+                title: Text('Egresos totales'),
+                subtitle:
+                    Text('Aquí se muestran el total de salida de dinero'),
+                
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: <Widget>[
+                  Text('1345678', style: TextStyle(fontSize: 22.0, color: Colors.red ))
+                ],
+              )
+            ],
+          ),
+        )
+      );
+  }
+
+  Widget _cardBalance() {
+
+    return Container(
+      padding: EdgeInsets.only(right: 20.0),
+      child: Card(
+        color: Colors.transparent,
+        elevation: 0.0,
+        child: Column(
+          children: <Widget>[
+            ListTile(
+                leading: Icon(Icons.attach_money, color: Colors.red,),
+                title: Text('Balance'),
+                subtitle:
+                    Text('Aquí se muestran el total de salida de dinero'),
+                
+              
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: <Widget>[
+                Text('110000000', style: TextStyle(fontSize: 22.0, color: Colors.orange),)
+              ],
+            )
+          ],
+        ),
+      ),
+    );
+
+  }
+
 }
 
