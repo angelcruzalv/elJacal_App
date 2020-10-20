@@ -4,11 +4,14 @@ class AjustesScreen extends StatefulWidget {
   @override
   _AjustesScreenState createState() => new _AjustesScreenState();
 }
-int _i= 0;
+
+int _i = 0;
+
 class _AjustesScreenState extends State<AjustesScreen> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: Scaffold(
           body: Container(
         decoration: BoxDecoration(
@@ -87,7 +90,6 @@ class _AjustesScreenState extends State<AjustesScreen> {
                             child: ListView(
                               padding: EdgeInsets.symmetric(vertical: 10.0),
                               children: <Widget>[
-                                
                                 _cardConf(),
                                 _cardConf(),
                                 _cardConf(),
@@ -95,42 +97,45 @@ class _AjustesScreenState extends State<AjustesScreen> {
                                 _cardConf(),
                                 _cardConf(),
                                 _cardConf(),
-                                                              ],
-                                                            ),
-                                                          ),
-                                                        )),
-                                                  ),
-                                                ],
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      )),
-                                    );
-                                  }
-                                }
-                                Widget _cardConf(){
-                                  return Container(
-                                    padding: EdgeInsets.all(10.0),
+                              ],
+                            ),
+                          ),
+                        )),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      )),
+    );
+  }
+}
 
-                                    child: Card(
-                                      color: Colors.transparent,
-                                        elevation: 0.0,
-                                      child: Column(children: <Widget>[
-                                        ListTile(
-                                          leading: Icon(Icons.settings),
-                                          title: Text("Notificaciones"),
-                                          subtitle: Text("Recibir notificaciones acerca de los movimientos en tiempo real"),
-                                        ),
-                                        Row(
-                                          mainAxisAlignment: MainAxisAlignment.end,
-                                          children: <Widget>[
-                                            Switch(
-                                            value: true,
-                                            )
-                                          ],
-                                        )
-                                      ],),
-                                    ),
-                                  );
-                                }
+Widget _cardConf() {
+  return Container(
+    padding: EdgeInsets.all(10.0),
+    child: Card(
+      color: Colors.transparent,
+      elevation: 0.0,
+      child: Column(
+        children: <Widget>[
+          ListTile(
+            leading: Icon(Icons.settings),
+            title: Text("Notificaciones"),
+            subtitle: Text(
+                "Recibir notificaciones acerca de los movimientos en tiempo real"),
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: <Widget>[
+              Switch(
+                value: true,
+              )
+            ],
+          )
+        ],
+      ),
+    ),
+  );
+}

@@ -104,6 +104,7 @@ class _EntradaScreen extends State<EntradaScreen> {
                                 }
                                 return Flexible(
                                   child: MaterialApp(
+                                    debugShowCheckedModeBanner: false,
                                     home: Card(
                                       child: ListView(
                                         children: entradaItems,

@@ -22,25 +22,28 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: _title,
       home: MyStatefulWidget(),
       theme: ThemeData(
-          primaryColor: Color.fromRGBO(237, 64, 60, 1.0),
+        primaryColor: Color.fromRGBO(237, 64, 60, 1.0),
       ),
       //Main es el archivo que se lee antes de iniciar la aplicación
       //aquí se agregan todas las páginas consu respectiva ruta, el initialRoute es
       //la página que inicia al iniciar la aplicación
-      //la ruta inicial es WelcomeScreen, 
+      //la ruta inicial es WelcomeScreen,
       initialRoute: WelcomeScreen.routeName,
       routes: <String, WidgetBuilder>{
-        WelcomeScreen.routeName : (BuildContext context) => WelcomeScreen(),
+        WelcomeScreen.routeName: (BuildContext context) => WelcomeScreen(),
         LoginScreen.routeName: (BuildContext context) => LoginScreen(),
-        RegistrationScreen.routeName: (BuildContext context) => RegistrationScreen(),
+        RegistrationScreen.routeName: (BuildContext context) =>
+            RegistrationScreen(),
         HomePage.routeName: (BuildContext context) => HomePage(),
-        MyStatefulWidget.routeName: (BuildContext context) => MyStatefulWidget(),
+        MyStatefulWidget.routeName: (BuildContext context) =>
+            MyStatefulWidget(),
         AddSalidaScreen.routeName: (BuildContext context) => AddSalidaScreen(),
-        AddEntradaScreen.routeName: (BuildContext context) => AddEntradaScreen(),
-        
+        AddEntradaScreen.routeName: (BuildContext context) =>
+            AddEntradaScreen(),
       },
     );
   }
@@ -48,7 +51,7 @@ class MyApp extends StatelessWidget {
 //ButtonNavBar
 
 class MyStatefulWidget extends StatefulWidget {
-  static const String routeName= '/nav';
+  static const String routeName = '/nav';
   MyStatefulWidget({Key key}) : super(key: key);
 
   @override
@@ -56,11 +59,11 @@ class MyStatefulWidget extends StatefulWidget {
 }
 
 class _MyStatefulWidgetState extends State<MyStatefulWidget> {
-
   int _selectedIndex = 0;
-  static const TextStyle optionStyle = TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
+  static const TextStyle optionStyle =
+      TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
   final List<Widget> _widgetOptions = <Widget>[
-    //se ponen las diferentes Screen, en el orden deseado 
+    //se ponen las diferentes Screen, en el orden deseado
     //para acceder desde la barra de navegación
     //Cómo crear un ButtonNavigarorBar
     //https://api.flutter.dev/flutter/material/BottomNavigationBar-class.html
@@ -74,20 +77,16 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
-      
     });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      
       body: Center(
         child: _widgetOptions.elementAt(_selectedIndex),
       ),
-
       bottomNavigationBar: BottomNavigationBar(
-        
         type: BottomNavigationBarType.fixed, //for more than 3 items
         backgroundColor: Colors.white,
         items: const <BottomNavigationBarItem>[
